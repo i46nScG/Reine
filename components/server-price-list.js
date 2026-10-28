@@ -11,51 +11,24 @@ function createEmbed(title, description) {
 
 const serverPriceEmbeds = {
     basic_package: createEmbed(
-        "Paket Dasar (Rp10.000)",
-        [
-            "Paket ini cocok untuk kebutuhan server personal, komunitas kecil, atau *gaming* sederhana.",
-            "* **Penataan Saluran (Channel):** Server dengan saluran teks dan suara yang telah ditata rapi.",
-            "* **Integrasi Bot Dasar:** Penambahan bot sesuai permintaan dan/atau kebutuhan dasar server.",
-            "* **Peran (Roles) Inti:** Konfigurasi peran yang simpel dengan fungsi inti (misalnya: anggota, *moderator*, administrator).",
-        ].join("\n"),
+        "Paket Dasar",
+        "**Harga:** Rp10.000\n\nCocok untuk server personal, teman mabar, atau komunitas kecil.\n\n**Benefit & Fitur:**\n- Penataan channel (teks dan voice) yang rapi.\n- Setup role inti (Member, Moderator, Admin).\n- Penambahan bot standar sesuai kebutuhan dasar.",
     ),
     regular_package: createEmbed(
-        "Paket Reguler (Rp15.000)",
-        [
-            "Paket ini cocok untuk komunitas yang lebih terorganisir dan membutuhkan tampilan serta fungsi yang lebih terperinci.",
-            "* **Penataan Peran Lanjut:** Konfigurasi peran yang tertata rapih dengan pengaturan izin (*permission*) yang jelas.",
-            "* **Estetika Saluran:** Tataan saluran yang rapi, sejajar, dan diberikan warna atau simbol estetika.",
-            "* **Bot Fungsional:** Integrasi dan konfigurasi bot dengan fungsi yang berguna untuk mengoptimalkan interaksi server.",
-        ].join("\n"),
+        "Paket Reguler",
+        "**Harga:** Rp15.000\n\nDidesain untuk komunitas yang lebih terorganisir dengan tampilan yang menarik.\n\n**Benefit & Fitur:**\n- Penataan role beserta permission yang lebih terstruktur.\n- Desain channel estetik (menggunakan warna/simbol).\n- Integrasi bot fungsional untuk mengoptimalkan interaksi antar member.",
     ),
     lite_package: createEmbed(
-        "Paket Lite (Rp20.000)",
-        [
-            "Paket ini menawarkan automasi dasar untuk mengurangi pekerjaan administrasi server.",
-            "* **Integrasi 3 Bot Utama:** Penambahan dan *setup* 3 (tiga) bot utama (misalnya: Verifikasi, *Reaction Roles*, dsb.).",
-            "* **Konfigurasi Peran Mendalam:** Pengaturan peran yang lebih mendalam dan spesifik dibandingkan paket reguler.",
-            "* **Izin Saluran Optimal:** Penataan saluran yang rapi disertai pengaturan izin yang sesuai dengan setiap peran.",
-        ].join("\n"),
+        "Paket Lite",
+        "**Harga:** Rp20.000\n\nFokus pada automasi untuk meminimalkan beban kerja administrasi server.\n\n**Benefit & Fitur:**\n- Setup 3 bot utama (misal: verifikasi otomatis, reaction roles).\n- Konfigurasi role yang mendalam dan sangat spesifik.\n- Pengaturan permission channel yang ketat sesuai tingkatan role.",
     ),
     enterprise_package: createEmbed(
-        "Paket Enterprise (Rp25.000)",
-        [
-            "Paket lengkap untuk kebutuhan server berskala besar atau yang berorientasi publik/bisnis.",
-            "* **Integrasi Bot Maksimal:** *Setup* dan integrasi bot dalam jumlah tak terbatas (*as much as you want*) ke dalam server.",
-            "* **Aktivasi Komunitas:** Mengaktifkan fitur ***Community*** Discord.",
-            "* **Optimasi Komunitas:** *Setup* dan konfigurasi fitur ***Community*** agar bekerja optimal (misalnya: *welcome screen*, aturan, *server insights*).",
-        ].join("\n"),
+        "Paket Enterprise",
+        "**Harga:** Rp25.000\n\nPaket komplit untuk kebutuhan server publik skala besar atau keperluan bisnis.\n\n**Benefit & Fitur:**\n- Integrasi bot tanpa batas (unlimited bot setup).\n- Aktivasi dan konfigurasi penuh fitur Discord Community.\n- Setup Welcome Screen, Server Rules, dan Server Insights.\n- Sudah otomatis mencakup seluruh benefit dari paket-paket di bawahnya.",
     ),
     extra_notes: createEmbed(
-        "Catatan Tambahan",
-        [
-            "* **Fitur Bertingkat:** Setiap paket level tinggi secara otomatis mencakup semua fitur dari level paket sebelumnya sebagai fitur yang dapat diminta.",
-            "* **Kebutuhan Kustom:** Jika kebutuhan server Anda tidak ditemukan dalam daftar paket di atas, silakan buat tiket dan jelaskan server impian Anda untuk mendapatkan Penawaran Harga (*Quotation*) kustom.",
-            "**Kontak**",
-            "Untuk informasi lebih lanjut atau konsultasi gratis, silakan hubungi tim *support* kami melalui *channel* **<#1251433206914486343>** di server Discord Harmony Hub.",
-            "",
-            "*Informasi ini terakhir diperbarui: 8 Oktober 2025*.",
-        ].join("\n"),
+        "Catatan Tambahan & Kontak",
+        "**Sistem Upgrade Otomatis:**\nSetiap paket level tinggi secara otomatis memiliki kemampuan dan fitur dari level paket sebelumnya.\n\n**Kebutuhan Kustom:**\nJika Anda membutuhkan struktur server di luar daftar paket ini, silakan buat tiket untuk mendapatkan penawaran harga (*Quotation*) khusus.\n\n**Kontak & Dukungan:**\nUntuk konsultasi gratis, hubungi tim kami di channel <#1251433206914486343> pada server Discord Harmony Hub.",
     ),
 };
 

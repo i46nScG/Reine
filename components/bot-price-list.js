@@ -10,28 +10,6 @@ function createEmbed(title, description) {
     };
 }
 
-function createSelectMenu(customId, placeholder, options) {
-    return [
-        {
-            type: ComponentType.ACTION_ROW,
-            components: [
-                {
-                    type: ComponentType.STRING_SELECT,
-                    custom_id: customId,
-                    placeholder,
-                    min_values: 1,
-                    max_values: 1,
-                    options: options.map(({ label, value, emoji }) => ({
-                        label,
-                        value,
-                        emoji: { name: emoji },
-                    })),
-                },
-            ],
-        },
-    ];
-}
-
 function getSelectedValue(interaction) {
     return interaction.data?.values?.[0];
 }
@@ -52,189 +30,102 @@ function unavailableOption() {
 const priceListEmbeds = [
     createEmbed(
         "Paket Starter Bot",
-        "**Harga:** Rp50.000 - Rp75.000\n\nPaket ini cocok untuk bot sederhana dengan fitur dasar dan kebutuhan ringan.\n\n**Benefit:**\n- Bot custom sesuai kebutuhan dasar server\n- Maksimal 3 fitur ringan\n- Cocok untuk command informasi, embed, greeting, fun command, atau fitur sederhana lainnya\n- Setup dan testing bot\n- Bantuan konfigurasi awal\n- Garansi bug fixing 7 hari setelah bot selesai\n\n**Contoh fitur:**\n- Informasi server\n- Informasi user\n- Simple embed message\n- Welcome/goodbye sederhana\n- Fun command ringan\n- Command custom tanpa database kompleks\n\n**Catatan:**  \nPaket ini cocok untuk server kecil atau client yang baru ingin mulai menggunakan bot custom.",
+        "**Harga:** Rp50.000 - Rp75.000\n\nCocok untuk server baru yang hanya membutuhkan fitur dasar tanpa sistem database yang rumit.\n\n**Benefit & Fitur:**\n- Custom bot ringan sesuai tema server\n- Maksimal 3-5 fitur dasar (misal: info server, simple embed, welcome/goodbye, fun command)\n- Sudah termasuk setup, testing, dan konfigurasi awal\n- Garansi perbaikan bug (bug fixing) 7 hari setelah bot selesai\n\n*Catatan: Paket ini tidak mendukung integrasi API pihak ketiga atau ekonomi kompleks.*",
     ),
     createEmbed(
         "Paket Community Bot",
-        "**Harga:** Rp75.000 - Rp100.000\n\nPaket ini cocok untuk server komunitas yang membutuhkan fitur lebih lengkap dan sistem yang lebih terstruktur.\n\n**Benefit:**\n- Bot custom untuk kebutuhan komunitas\n- Beberapa fitur menengah sesuai brief\n- Bisa menggunakan database ringan\n- Setup, testing, dan konfigurasi awal\n- Bantuan penggunaan bot\n- Dokumentasi command sederhana\n- Garansi bug fixing 14 hari setelah bot selesai\n\n**Contoh fitur:**\n- Moderation system\n- Auto-moderation sederhana\n- Role management\n- Welcome/goodbye system\n- Logging server\n- Message listener\n- Database simple\n- Sistem command interaktif\n\n**Catatan:**  \nHarga final bergantung pada jumlah fitur, tingkat kerumitan, dan apakah bot membutuhkan database atau sistem tambahan.",
+        "**Harga:** Rp75.000 - Rp100.000\n\nDidesain untuk server komunitas aktif yang membutuhkan sistem lebih terstruktur dan pendataan sederhana.\n\n**Benefit & Fitur:**\n- Penggunaan database ringan untuk menyimpan data\n- Fitur menengah (misal: sistem moderasi otomatis, role management, logging chat, auto-response cerdas)\n- Dilengkapi dengan dokumentasi penggunaan command\n- Garansi perbaikan bug 14 hari setelah bot selesai\n\n*Catatan: Harga final menyesuaikan jumlah fitur dan kerumitan sistem moderasi.*",
     ),
     createEmbed(
         "Paket Custom System Bot",
-        "**Harga:** Rp100.000 - Rp200.000\n\nPaket ini ditujukan untuk bot dengan sistem yang lebih kompleks, logic khusus, integrasi eksternal, database, atau kebutuhan yang tidak dapat disamakan dengan paket biasa.\n\n**Benefit:**\n- Bot custom berdasarkan workflow server\n- Sistem kompleks sesuai kebutuhan\n- Database lebih terstruktur\n- Integrasi API jika diperlukan\n- Testing fitur lebih detail\n- Bantuan setup dan konfigurasi\n- Dokumentasi penggunaan bot\n- Garansi bug fixing 14-30 hari tergantung project\n\n**Contoh fitur:**\n- Ticket system custom\n- Economy system\n- Leveling system kompleks\n- Multi-server functionality\n- API integration\n- Dashboard web sederhana\n- Sistem database kompleks\n- Automation khusus\n- Sistem khusus sesuai request client\n\n**Catatan:**  \nHarga final ditentukan setelah konsultasi berdasarkan jumlah fitur, tingkat kompleksitas, estimasi waktu pengerjaan, dan kebutuhan teknis project. Batas harga paket ini adalah Rp200.000 selama kebutuhan masih berada dalam cakupan layanan yang tersedia.",
+        "**Harga:** Rp100.000 - Rp200.000\n\nDiperuntukkan bagi bot dengan alur kerja (workflow) khusus yang menjadi pusat operasional server Anda.\n\n**Benefit & Fitur:**\n- Sistem kompleks yang saling terhubung\n- Database terstruktur untuk data berskala besar\n- Contoh fitur: Ticket system, economy system global, integrasi API luar, atau web dashboard sederhana\n- Dokumentasi penuh dan bantuan setup mendetail\n- Garansi perbaikan bug 14-30 hari (tergantung project)\n\n*Catatan: Pengerjaan lebih lama dan diuji secara ekstensif.*",
+    ),
+];
+
+const serverlessBotPricePages = [
+    createEmbed(
+        "Serverless Starter",
+        "**Harga:** Rp100.000 - Rp150.000\n\nBerjalan penuh menggunakan Cloudflare Workers. Sangat cocok jika Anda ingin bot interaktif tanpa perlu menyewa hosting bulanan.\n\n**Benefit & Fitur:**\n- Fokus pada interaksi dasar (Slash commands, buttons, select menu)\n- Maksimal 3 fitur ringan\n- Berpotensi gratis biaya hosting (memanfaatkan Free Plan Cloudflare)\n- Garansi perbaikan bug 7 hari",
+    ),
+    createEmbed(
+        "Serverless Community",
+        "**Harga:** Rp150.000 - Rp200.000\n\nSistem serverless untuk komunitas yang membutuhkan pendataan dan alur interaksi yang lebih dalam.\n\n**Benefit & Fitur:**\n- Terintegrasi dengan database dan API pihak ketiga\n- Contoh interaksi kompleks: Sistem registrasi via modal, sistem tiket, atau role management berbasis form\n- Struktur project rapi dengan dokumentasi lengkap\n- Garansi perbaikan bug 14 hari",
+    ),
+    createEmbed(
+        "Serverless Custom System",
+        "**Harga:** Rp200.000 - Rp250.000\n\nProject serverless berskala besar untuk workflow spesifik yang membutuhkan skalabilitas tinggi.\n\n**Benefit & Fitur:**\n- Mendukung external webhook, multiple API, dan task terjadwal (cron jobs)\n- Sistem custom sesuai alur bisnis atau server Anda\n- Penanganan interaksi tingkat lanjut dan testing mendetail\n- Garansi perbaikan bug 14-30 hari",
     ),
 ];
 
 const maintenanceInfoEmbed = createEmbed(
     "Maintenance Bulanan",
-    "Bot Discord tidak hanya membutuhkan proses development awal. Bot juga dapat membutuhkan hosting, pengecekan, update, dan perbaikan apabila terjadi error atau perubahan dari Discord, API, library, maupun sistem lain yang digunakan.\n\nClient dapat memilih maintenance bulanan agar bot tetap aktif, stabil, dan mendapatkan support setelah masa garansi selesai.\n\nKlik tombol di bawah untuk memulai navigasi.",
+    "Layanan purnajual (opsional) agar bot tetap stabil, terpantau, dan langsung diperbaiki jika terjadi perubahan sistem dari Discord atau update library, bahkan setelah masa garansi habis.",
 );
 
 const maintenancePages = [
     createEmbed(
         "Care Basic",
-        "**Harga:** Rp10.000/bulan\n\nCocok untuk bot kecil dengan kebutuhan support ringan.\n\n**Benefit:**\n- Hosting ringan\n- Restart bot jika terjadi error/down\n- Bug fixing kecil\n- Pengecekan dasar\n- Support ringan",
+        "**Harga:** Rp10.000/bulan\n\n- Layanan hosting ringan\n- Restart otomatis jika bot mengalami down/error\n- Perbaikan bug minor dan pengecekan dasar",
     ),
     createEmbed(
         "Care Plus",
-        "**Harga:** Rp20.000/bulan\n\nCocok untuk bot komunitas yang aktif digunakan dan membutuhkan support secara berkala.\n\n**Benefit:**\n- Hosting bot\n- Monitoring dasar\n- Bug fixing\n- Minor update\n- Bantuan konfigurasi\n- Support lebih prioritas dibanding Care Basic",
+        "**Harga:** Rp20.000/bulan\n\n- Layanan hosting bot yang lebih stabil\n- Monitoring aktif secara berkala\n- Update minor (menyesuaikan versi library)\n- Prioritas dukungan teknis lebih tinggi",
     ),
     createEmbed(
         "Care Pro",
-        "**Harga:** Rp30.000/bulan\n\nCocok untuk bot penting yang digunakan di server aktif, komunitas besar, atau sistem yang membutuhkan stabilitas lebih tinggi.\n\n**Benefit:**\n- Hosting bot\n- Monitoring lebih serius\n- Prioritas support\n- Bug fixing\n- Minor feature update setiap bulan\n- Backup database jika bot menggunakan database\n- Bantuan teknis lebih lengkap",
-    ),
-    createEmbed(
-        "Catatan",
-        "Maintenance bersifat opsional. Jika client tidak mengambil maintenance, support gratis hanya berlaku selama masa garansi sesuai paket pembuatan bot yang dipilih.\n\nMaintenance tidak mencakup penambahan sistem besar atau perubahan total terhadap fitur yang sebelumnya telah dibuat. Permintaan tersebut akan dihitung sebagai fitur atau project tambahan.",
+        "**Harga:** Rp30.000/bulan\n\n- Layanan hosting & monitoring proaktif\n- Minor feature update setiap bulan\n- Backup database berkala (jika bot menggunakan database)\n- Dukungan teknis prioritas utama",
     ),
 ];
 
 const addOnInfoEmbed = createEmbed(
-    "Add-on dan Tambahan Fitur",
-    "Penambahan fitur di luar paket atau brief awal akan dikenakan biaya tambahan sesuai tingkat kesulitan dan kebutuhan teknis.",
+    "Add-on Fitur Tambahan",
+    "Penambahan fitur yang diajukan di tengah pengerjaan (di luar brief awal) akan dihitung terpisah sesuai dengan tingkat kompleksitasnya.",
 );
 
 const addOnPages = [
     createEmbed(
         "Fitur Basic",
-        "**Harga:** Rp10.000 - Rp20.000 per fitur\n\nContoh:\n- Command informasi\n- Simple embed\n- Fun command sederhana\n- Command teks biasa\n- Command tanpa database\n- Auto-response sederhana",
+        "**Harga:** Rp10.000 - Rp20.000 / fitur\n\nFitur tunggal yang tidak memerlukan logika rumit atau database.\n\n**Contoh:** Command informasi teks, simple embed statis, auto-response sederhana.",
     ),
     createEmbed(
         "Fitur Intermediate",
-        "**Harga:** Rp20.000 - Rp30.000 per fitur\n\nContoh:\n- Database simple\n- Role management\n- Welcome/goodbye system\n- Logging system\n- Moderation command\n- Auto-response dengan logic tambahan\n- Message listener\n- Sistem konfigurasi sederhana",
+        "**Harga:** Rp20.000 - Rp30.000 / fitur\n\nFitur fungsional yang membutuhkan konfigurasi pendataan ringan.\n\n**Contoh:** Sistem moderasi dasar, logging channel, welcome system, simple database user.",
     ),
     createEmbed(
         "Fitur Advanced",
-        "**Harga:** Rp30.000 - Rp50.000 per fitur/sistem\n\nContoh:\n- Ticket system\n- Economy system\n- Leveling system\n- API integration\n- Multi-server system\n- Dashboard web\n- Sistem custom dengan database kompleks\n- Automation khusus",
-    ),
-    createEmbed(
-        "Catatan",
-        "Fitur advanced dihitung berdasarkan kompleksitas, estimasi waktu pengerjaan, database, API, serta kebutuhan teknis lainnya.\n\nApabila beberapa fitur advanced dipesan sekaligus, client dapat disarankan menggunakan Paket Custom System Bot agar harga dan pengerjaan lebih efisien.",
+        "**Harga:** Rp30.000 - Rp50.000 / fitur\n\nSistem yang membutuhkan waktu pengerjaan khusus dan alur yang kompleks.\n\n**Contoh:** Economy system, ticket system, integrasi API luar, dashboard interaktif.",
     ),
 ];
 
-const botTypeEmbed = createEmbed(
-    "Pilih Tipe Bot Discord",
-    "Kami menyediakan **2 tipe Bot Discord** yang dapat dipilih sesuai dengan kebutuhan Anda: **Bot Biasa** dan **Bot Serverless**.\n\n**Bot Biasa** berjalan menggunakan koneksi Gateway dan membutuhkan hosting yang aktif 24/7. Tipe ini lebih fleksibel dan cocok untuk bot yang membutuhkan banyak fitur serta aktivitas secara real-time.\n\n**Bot Serverless** menggunakan HTTP Interactions dan Cloudflare Workers. Bot tidak membutuhkan hosting tradisional yang aktif 24/7 dan dapat berjalan tanpa biaya hosting bulanan selama masih dalam batas layanan gratis Cloudflare. Namun, tidak semua jenis fitur cocok menggunakan sistem Serverless.\n\nKeduanya memiliki kelebihan dan kegunaan masing-masing. Pilihan terbaik bergantung pada fitur dan kebutuhan bot yang ingin dibuat.\n\n**Silakan pilih tipe bot yang Anda inginkan melalui select menu di bawah ini.**",
-);
-
-const botTypeComponents = createSelectMenu("bot_type", "Pilih Tipe Bot Yang Dibutuhkan", [
-    {
-        label: "Bot Biasa",
-        value: "normal_bot",
-        emoji: "🤖",
-    },
-    {
-        label: "Bot Serverless",
-        value: "serverless_bot",
-        emoji: "📦",
-    },
-]);
-
-const serverlessBotEmbed = createEmbed(
-    "Discord Bot Serverless",
-    "Selain bot Discord biasa yang menggunakan hosting 24/7, sekarang tersedia pilihan **Discord Bot Serverless**.\n\nBot Serverless adalah bot Discord yang tidak membutuhkan program bot untuk terus berjalan selama 24 jam hanya untuk menunggu command.\n\nPada bot biasa, program harus terus aktif dan mempertahankan koneksi dengan Discord melalui Gateway/WebSocket. Karena itu, bot biasanya membutuhkan VPS atau layanan hosting yang terus aktif.\n\nBot Serverless bekerja dengan cara berbeda.\n\nKetika seseorang menggunakan slash command, menekan button, mengirim modal, atau melakukan interaction lainnya, Discord akan mengirimkan HTTP request langsung ke bot. Sistem kemudian memproses request tersebut dan mengirimkan respons kembali ke Discord.\n\nSederhananya:\n\n**Bot biasa:**  \n`Hosting aktif 24/7 → Bot terus terhubung ke Discord → Menunggu aktivitas`\n\n**Bot Serverless:**  \n`User menggunakan command → Discord mengirim request → Bot memproses → Selesai`\n\nImplementasi Serverless kami menggunakan **Discord HTTP Interactions** dan **Cloudflare Workers**.",
-);
-
-const serverlessBotReplies = {
-    free_hosting: createEmbed(
-        "Tidak Perlu Membayar Hosting Bulanan?",
-        "**Untuk penggunaan normal yang masih berada dalam batas Free Plan Cloudflare Workers: ya.**\n\nIni merupakan salah satu keunggulan utama dari pilihan Serverless.\n\nBot tradisional membutuhkan sebuah program yang terus berjalan. Artinya, client biasanya membutuhkan VPS, panel hosting, atau layanan hosting bot yang aktif 24/7.\n\nJika menggunakan layanan hosting gratis, terkadang terdapat batas waktu, sleep, masa aktif, atau kebutuhan melakukan renew secara berkala. Jika menggunakan hosting berbayar, terdapat biaya hosting yang harus dibayar secara rutin.\n\nDengan Cloudflare Workers, modelnya berbeda.\n\nCloudflare menyediakan **Free Plan hingga 100.000 request per hari** untuk Workers. Selama penggunaan bot masih berada dalam batas layanan gratis tersebut, tidak ada biaya hosting bulanan khusus hanya untuk menjaga bot tetap online.\n\nJadi setelah bot selesai dibuat dan di-deploy, client tidak harus membayar biaya hosting setiap bulan hanya agar slash command tetap dapat digunakan.\n\n**Tidak perlu sewa VPS.**  \n**Tidak perlu menjaga process Node.js tetap berjalan 24/7.**  \n**Tidak perlu renew hosting gratis setiap beberapa hari/minggu.**\n\n> **Catatan:** Gratis bukan berarti unlimited. Cloudflare memiliki batas penggunaan pada Free Plan. Jika penggunaan bot sangat tinggi atau membutuhkan layanan Cloudflare/database eksternal di luar batas gratis, upgrade atau biaya layanan tambahan mungkin diperlukan.",
-    ),
-    why_choose_serverless: createEmbed(
-        "Mengapa Memilih Serverless?",
-        "Serverless bukan pengganti wajib untuk bot Discord biasa.\n\nIni hanyalah **pilihan arsitektur lain** sesuai kebutuhan bot.\n\nClient dapat memilih:\n### A. Bot Biasa — Aktif 24/7\n\nBot berjalan terus-menerus dan mempertahankan koneksi dengan Discord melalui Gateway/WebSocket.\n\n**Kelebihan:**\n- Mendukung lebih banyak jenis event Discord\n- Cocok untuk message monitoring\n- Cocok untuk voice system\n- Cocok untuk moderation yang membutuhkan realtime event\n- Lebih fleksibel untuk general-purpose Discord bot\n\n**Kekurangan:**\n- Membutuhkan hosting yang terus aktif\n- Hosting berbayar dapat menimbulkan biaya rutin\n- Hosting gratis dapat memiliki limit atau ketentuan tersendiri\n- Process bot harus tetap berjalan\n- Hosting/down dapat menyebabkan bot ikut offline\n### B. Bot Serverless — Aktif Saat Dibutuhkan\n\nTidak membutuhkan process bot tradisional yang terus berjalan untuk menunggu command. Discord mengirimkan request ketika terdapat interaction yang perlu diproses.\n\n**Kelebihan:**\n- Tidak membutuhkan VPS untuk menjalankan bot 24/7\n- Dapat menggunakan Cloudflare Workers Free Plan\n- Hingga 100.000 request/hari pada Workers Free Plan\n- Berpotensi tanpa biaya hosting bulanan\n- Tidak perlu melakukan renew hosting gratis secara berkala\n- Tidak perlu menjaga process bot tetap berjalan\n- Cocok untuk slash command, button, modal, API, dan webhook\n- Sangat cocok untuk bot yang hanya bekerja ketika diperintah\n\n**Kekurangan:**\n- Tidak semua fitur Discord cocok menggunakan Serverless\n- Tidak memiliki koneksi Gateway terus-menerus\n- Kurang cocok untuk fitur yang sangat bergantung pada realtime Gateway events\n- Development lebih kompleks\n- Beberapa sistem mungkin tetap membutuhkan layanan/database eksternal",
-    ),
-    expensive_price: createEmbed(
-        "Jadi, Kenapa Harganya Lebih Mahal?",
-        "Harga pembuatan memang lebih tinggi dibandingkan bot biasa, tetapi terdapat perbedaan pada biaya operasional setelah bot selesai.\n\nSebagai gambaran:\n\n**Bot biasa:**\n\n`Biaya development + hosting berkelanjutan`\n\n**Bot Serverless:**\n\n`Biaya development lebih tinggi + hosting berpotensi Rp0/bulan`\n\nServerless membutuhkan development yang lebih khusus, tetapi sebagai gantinya client tidak harus menyewa server hanya untuk membuat bot tetap aktif.\n\nUntuk bot dengan penggunaan ringan hingga menengah yang masih berada dalam batas Free Plan Cloudflare Workers, **biaya hosting dapat tetap Rp0 dalam jangka panjang**.",
-    ),
-    which_one_to_choose: createEmbed(
-        "Mana yang Harus Dipilih?",
-        "**Pilih Bot Biasa jika:**\n- Membutuhkan banyak realtime Discord events\n- Membutuhkan message monitoring\n- Membutuhkan voice functionality\n- Membutuhkan koneksi Gateway secara terus-menerus\n- Tidak masalah menggunakan hosting 24/7\n\n**Pilih Bot Serverless jika:**\n- Mayoritas menggunakan slash command\n- Banyak menggunakan button, select menu, atau modal\n- Membutuhkan API atau webhook\n- Bot hanya perlu bekerja ketika terdapat interaction\n- Tidak ingin mengelola VPS\n- Tidak ingin membayar hosting bot setiap bulan\n- Tidak ingin melakukan renew hosting gratis secara berkala\n\n**Serverless bukan berarti lebih baik daripada bot biasa.**\n\nKeduanya merupakan pilihan yang berbeda. Client cukup menjelaskan fitur yang dibutuhkan, kemudian kami dapat menentukan apakah project lebih cocok menggunakan **bot biasa, Serverless, atau kombinasi keduanya**.\n\n> **Catatan:** Batas dan ketentuan Cloudflare Workers dapat berubah sewaktu-waktu. Penggunaan layanan lain seperti database eksternal, storage, API berbayar, atau fitur di luar Free Plan dapat memiliki biaya tersendiri.",
-    ),
-};
-
-const serverlessBotPriceInfoEmbed = createEmbed(
-    "Paket Discord Bot Serverless",
-    "Pembuatan bot Serverless memiliki tingkat development yang lebih tinggi dibandingkan bot biasa.\n\nSistem dibuat menggunakan pendekatan HTTP dan Discord API secara langsung, tanpa bergantung pada framework bot lengkap seperti `discord.js` untuk menangani sebagian besar proses.\n\nKarena itu, harga development Serverless lebih tinggi dibandingkan paket bot biasa.",
-);
-
-const serverlessBotPricePages = [
-    createEmbed(
-        "Serverless Starter",
-        "**Harga: Rp100.000 - Rp150.000**\n\nCocok untuk bot Serverless sederhana yang berfokus pada interaction dasar.\n\n**Benefit:**\n- Discord HTTP Interactions\n- Deployment Cloudflare Workers\n- Slash command\n- Button\n- Select menu\n- Modal sederhana\n- Discord REST API\n- Maksimal 3 fitur ringan\n- Setup dan testing\n- Deployment awal\n- Bantuan konfigurasi\n- Garansi bug fixing 7 hari\n- **Tidak membutuhkan hosting bot 24/7**\n- **Dapat berjalan menggunakan Cloudflare Workers Free Plan**",
-    ),
-    createEmbed(
-        "Serverless Community",
-        "**Harga: Rp150.000 - Rp200.000**\n\nCocok untuk bot komunitas yang membutuhkan sistem Serverless lebih lengkap.\n\n**Benefit:**\n- Semua benefit Serverless Starter\n- Beberapa fitur menengah\n- Database integration\n- Interaction system lebih kompleks\n- API integration\n- Scheduled task jika diperlukan\n- Struktur project lebih terorganisir\n- Setup dan testing\n- Dokumentasi penggunaan\n- Garansi bug fixing 14 hari\n- **Tidak membutuhkan VPS untuk menjalankan bot 24/7**\n\n**Contoh penggunaan:**\n- Ticket berbasis interaction\n- Database user\n- Role management\n- Watchlist\n- API integration\n- Scheduled notification\n- Sistem registrasi\n- Request/approval system",
-    ),
-    createEmbed(
-        "Serverless Custom System",
-        "**Harga: Rp200.000 - Rp250.000**\n\nCocok untuk project Serverless dengan workflow khusus dan beberapa sistem yang saling terhubung.\n\n**Benefit:**\n- Semua benefit Serverless Community\n- Sistem custom berdasarkan kebutuhan\n- Database lebih terstruktur\n- Multiple API integration\n- Scheduled/background task jika diperlukan\n- Advanced interaction handling\n- Integrasi website/dashboard jika diperlukan\n- External webhook\n- Testing lebih detail\n- Dokumentasi penggunaan\n- Garansi bug fixing 14-30 hari\n- **Deployment Serverless tanpa VPS tradisional**",
-    ),
-];
-
-const serverlessBotComponents = createSelectMenu(
-    "serverless_bot_pricelist",
-    "Klik Untuk Membuka Informasi Lain",
-    [
-        {
-            label: "Gratis Biaya Hosting?",
-            value: "free_hosting",
-            emoji: "🤔",
-        },
-        {
-            label: "Mengapa Memilih Serverless?",
-            value: "why_choose_serverless",
-            emoji: "📍",
-        },
-        {
-            label: "Paket Discord Bot Serverless",
-            value: "serverless_bot_price",
-            emoji: "💸",
-        },
-        {
-            label: "Harganya Lebih Mahal?",
-            value: "expensive_price",
-            emoji: "🥸",
-        },
-        {
-            label: "Mana yang Harus Dipilih?",
-            value: "which_one_to_choose",
-            emoji: "🫣",
-        },
-    ],
-);
-
-const priceListInfoEmbeds = {
-    payment_info: createEmbed(
-        "Informasi Pembayaran",
-        "- Harga final ditentukan setelah konsultasi dan pengecekan brief.\n- Untuk project kecil, pembayaran dilakukan di awal sebelum pengerjaan dimulai.\n- Untuk project menengah atau besar, pembayaran dapat dilakukan dengan sistem DP.\n- Minimal DP untuk project menengah/besar adalah 50%.\n- Pelunasan dilakukan sebelum bot diserahkan sepenuhnya kepada client.\n- Maintenance bulanan dibayar di awal periode.\n- Add-on atau fitur tambahan di luar brief akan dihitung secara terpisah.\n- Harga yang telah disepakati tidak berubah selama client tidak mengubah atau menambah brief.\n\n**Catatan:**  \nPengerjaan baru dimulai setelah pembayaran awal atau DP dikonfirmasi.",
-    ),
-    service_terms: createEmbed(
-        "Ketentuan Layanan",
-        "- Setiap paket mencakup development, testing, dan setup awal.\n- Revisi gratis hanya berlaku selama masih sesuai dengan brief awal.\n- Perubahan fitur besar atau permintaan baru di luar brief akan dikenakan biaya tambahan.\n- Garansi bug fixing berlaku sesuai paket yang dipilih.\n- Bug fixing hanya berlaku untuk error dari sistem yang dibuat.\n- Garansi tidak mencakup error akibat perubahan konfigurasi oleh client, perubahan layanan pihak ketiga, perubahan API, atau modifikasi source code oleh pihak lain.\n- Estimasi pengerjaan berkisar antara 1-21 hari kerja tergantung kompleksitas.\n- Bot yang tidak mengambil maintenance bulanan hanya mendapat support selama masa garansi.\n- Setelah masa garansi habis, perbaikan, update, atau bantuan teknis dapat dikenakan biaya tambahan.\n- Source code dan akses lain yang termasuk dalam kesepakatan akan diberikan setelah pembayaran diselesaikan.\n- Permintaan yang tidak terdapat dalam brief awal dianggap sebagai tambahan fitur.",
-    ),
-    faq: createEmbed(
-        "Kenapa Ada Maintenance?",
-        "Bot Discord merupakan software yang bergantung pada beberapa sistem lain. Meskipun bot telah selesai dibuat dan berjalan dengan normal, masalah tetap dapat muncul di kemudian hari.\n\nBeberapa hal yang dapat terjadi setelah bot selesai dibuat:\n\n- Bot mengalami error karena perubahan library/API\n- Hosting mengalami masalah\n- Token atau konfigurasi berubah\n- Database membutuhkan pengecekan\n- Client membutuhkan update kecil\n- Discord melakukan perubahan pada sistem mereka\n- Dependency mengalami update\n- Bot membutuhkan restart atau monitoring\n- Terjadi error setelah bot digunakan dalam jangka waktu tertentu\n\nDengan maintenance, client mendapatkan bantuan teknis setelah masa garansi selesai tanpa perlu melakukan pemesanan support secara terpisah setiap kali terjadi masalah kecil.",
-    ),
+const staticInfoEmbeds = {
     order_guide: createEmbed(
-        "Cara Pemesanan",
-        "1. **Konsultasi**  \n   Hubungi kami melalui channel yang tersedia untuk konsultasi kebutuhan bot.\n\n2. **Brief Detail**  \n   Jelaskan fitur yang diinginkan, tujuan bot, contoh referensi, dan kebutuhan server.\n\n3. **Pengecekan Kebutuhan**  \n   Kami akan mengecek tingkat kompleksitas, kebutuhan database, API, hosting, dan sistem lainnya.\n\n4. **Estimasi Harga**  \n   Kami akan menentukan paket, estimasi harga, dan estimasi waktu pengerjaan.\n\n5. **Pembayaran Awal / DP**  \n   Pengerjaan dimulai setelah pembayaran awal atau DP dikonfirmasi.\n\n6. **Pengerjaan Bot**  \n   Bot akan dibuat berdasarkan brief yang telah disepakati.\n\n7. **Testing dan Revisi**  \n   Bot akan diuji dan dilakukan revisi apabila masih terdapat bagian yang tidak sesuai dengan brief awal.\n\n8. **Pelunasan dan Penyerahan**  \n   Setelah selesai, client melakukan pelunasan sebelum bot diserahkan sepenuhnya.\n\n9. **Maintenance Opsional**  \n   Client dapat memilih paket maintenance bulanan agar bot tetap mendapatkan support setelah masa garansi selesai.",
+        "Panduan & Alur Pemesanan",
+        "**1. Konsultasi & Briefing:**\nHubungi kami dan jelaskan secara rinci fitur, referensi, dan alur kerja bot yang Anda inginkan.\n\n**2. Estimasi Harga & Waktu:**\nKami akan menganalisis brief Anda untuk menentukan paket yang sesuai, total biaya, dan estimasi lama pengerjaan (biasanya 1-21 hari kerja).\n\n**3. Pembayaran Awal (DP):**\nProyek baru akan mulai dikerjakan setelah pembayaran penuh atau DP (minimal 50%) dikonfirmasi.\n\n**4. Pengerjaan & Testing:**\nBot akan dibangun, diuji coba, dan Anda berhak mengajukan revisi jika ada yang melenceng dari brief awal.\n\n**5. Pelunasan & Penyerahan:**\nSetelah semuanya sesuai dan pembayaran dilunasi, source code serta akses penuh bot akan diserahkan kepada Anda.",
     ),
-    package_guide: createEmbed(
-        "Panduan Pemilihan Paket",
-        "### Pilih Starter Bot jika:\n- Hanya membutuhkan beberapa command\n- Tidak membutuhkan sistem database kompleks\n- Bot digunakan untuk kebutuhan sederhana\n- Tidak membutuhkan integrasi API atau dashboard\n### Pilih Community Bot jika:\n- Bot digunakan untuk server komunitas\n- Membutuhkan beberapa sistem sekaligus\n- Membutuhkan database sederhana\n- Membutuhkan moderation, logging, role, atau sistem interaktif lainnya\n### Pilih Custom System Bot jika:\n- Membutuhkan sistem yang saling terhubung\n- Membutuhkan database yang lebih kompleks\n- Membutuhkan API integration\n- Membutuhkan dashboard web\n- Membutuhkan automation atau logic khusus\n- Bot menjadi bagian penting dari operasional server\n\nPemilihan paket tetap akan disesuaikan setelah brief diperiksa.",
+    serverless_info: createEmbed(
+        "Perbedaan Bot Biasa vs Serverless",
+        '**Bot Biasa (24/7 Hosting)**\nBerjalan terus-menerus dan terhubung ke Discord via Gateway. Cocok untuk bot yang memantau pesan secara real-time, mendengarkan voice channel, atau melakukan auto-moderasi berat. Kelemahannya, Anda wajib menyewa VPS atau hosting bulanan agar bot tidak mati.\n\n**Bot Serverless**\nBerjalan menggunakan *Cloudflare Workers* dan hanya "bangun" sesaat ketika menerima trigger (seperti klik tombol atau slash command). Cocok untuk bot utilitas yang berfokus pada interaksi.\n\n**Kenapa Serverless Lebih Mahal di Awal?**\nSistem ini dibangun secara manual melalui HTTP request tanpa framework instan. Namun sebagai gantinya, Anda **berpotensi gratis biaya hosting selamanya** (selama masih dalam limit 100.000 request/hari dari Cloudflare).',
     ),
-    important_notes: createEmbed(
-        "Catatan Penting",
-        "Harga layanan tidak hanya dihitung berdasarkan jumlah command atau jumlah file yang dibuat.\n\nBeberapa faktor yang menentukan harga antara lain:\n\n- Waktu pengerjaan\n- Tingkat kesulitan fitur\n- Jumlah fitur\n- Kompleksitas logic\n- Penggunaan database\n- Integrasi API\n- Testing\n- Setup awal\n- Bantuan konfigurasi\n- Garansi bug fixing\n- Risiko error teknis\n- Support setelah bot selesai\n\nBot custom bukan hanya sekadar kumpulan command, tetapi sistem yang dibuat berdasarkan kebutuhan server dan workflow client.\n\nKarena itu, dua bot dengan jumlah command yang sama belum tentu memiliki harga yang sama apabila tingkat kompleksitas sistemnya berbeda.",
+    terms_info: createEmbed(
+        "Syarat & Ketentuan Pembayaran",
+        "**Kebijakan Pembayaran:**\n- Harga bersifat final setelah brief disepakati. Penambahan fitur setelah pengerjaan dimulai akan masuk ke tagihan *Add-on*.\n- DP minimal 50% wajib untuk nominal proyek di atas Rp100.000.\n\n**Kebijakan Garansi & Revisi:**\n- Revisi tanpa biaya hanya berlaku jika hasil pengerjaan tidak sesuai dengan SOW (Scope of Work) awal.\n- Garansi *bug fixing* hanya menanggung kesalahan logika pada kode yang kami buat. Garansi batal jika error diakibatkan oleh perubahan API pihak ketiga atau modifikasi kode yang Anda lakukan sendiri.",
+    ),
+    faq_notes: createEmbed(
+        "FAQ & Catatan Penting",
+        "**Kenapa dua bot dengan jumlah command sama, harganya bisa beda?**\nHarga kami tidak dihitung per command, melainkan dari kompleksitas logika di baliknya. Command `!ping` tentu jauh lebih murah pengerjaannya dibandingkan command `!buy` yang harus mengecek database, mengurangi saldo, dan memanggil API eksternal.\n\n**Apakah saya wajib ambil layanan Maintenance?**\nTidak, maintenance sepenuhnya opsional. Namun perlu dipahami, Discord dan berbagai library pemrograman selalu mendapatkan update. Tanpa maintenance, bot yang awalnya berjalan lancar bisa saja tiba-tiba error beberapa bulan kemudian akibat sistem lama yang sudah *deprecated* (usang). Maintenance memastikan kami yang akan mengurus perbaikan tersebut.",
     ),
 };
 
 const paginationLists = {
-    maintenance: {
+    bot_normal_price: {
+        pages: priceListEmbeds,
+        invalidPageMessage: "Halaman paket tidak valid.",
+    },
+    bot_serverless_price: {
+        pages: serverlessBotPricePages,
+        invalidPageMessage: "Halaman paket serverless tidak valid.",
+    },
+    maintenance_price: {
         pages: maintenancePages,
         infoEmbed: maintenanceInfoEmbed,
         invalidPageMessage: "Halaman maintenance tidak valid.",
@@ -243,15 +134,6 @@ const paginationLists = {
         pages: addOnPages,
         infoEmbed: addOnInfoEmbed,
         invalidPageMessage: "Halaman add-on tidak valid.",
-    },
-    bot_price: {
-        pages: priceListEmbeds,
-        invalidPageMessage: "Halaman paket tidak valid.",
-    },
-    serverless_bot_price: {
-        pages: serverlessBotPricePages,
-        infoEmbed: serverlessBotPriceInfoEmbed,
-        invalidPageMessage: "Halaman paket serverless tidak valid.",
     },
 };
 
@@ -268,7 +150,6 @@ function paginationComponents(prefix, page, lastPage) {
                     style: isFirstPage ? ButtonStyle.SECONDARY : ButtonStyle.PRIMARY,
                     custom_id: `${prefix}:previous:${Math.max(1, page - 1)}`,
                     label: "Previous",
-                    emoji: { name: "◀️" },
                     disabled: isFirstPage,
                 },
                 {
@@ -283,7 +164,6 @@ function paginationComponents(prefix, page, lastPage) {
                     style: isLastPage ? ButtonStyle.SECONDARY : ButtonStyle.PRIMARY,
                     custom_id: `${prefix}:next:${Math.min(lastPage, page + 1)}`,
                     label: "Next",
-                    emoji: { name: "▶️" },
                     disabled: isLastPage,
                 },
             ],
@@ -310,49 +190,16 @@ function paginationReply(prefix) {
 function handlePriceListSelect(interaction) {
     const selectedValue = getSelectedValue(interaction);
 
-    switch (selectedValue) {
-        case "bot_price":
-            return ephemeralEmbed([botTypeEmbed], botTypeComponents);
-
-        case "maintenance_price":
-            return paginationReply("maintenance");
-
-        case "add_on":
-            return paginationReply("add_on");
-
-        default: {
-            const embed = getSelectedEmbed(priceListInfoEmbeds, selectedValue);
-
-            return embed ? ephemeralEmbed([embed]) : unavailableOption();
-        }
-    }
-}
-
-function handleBotSelect(interaction) {
-    const selectedValue = getSelectedValue(interaction);
-
-    switch (selectedValue) {
-        case "normal_bot":
-            return paginationReply("bot_price");
-
-        case "serverless_bot":
-            return ephemeralEmbed([serverlessBotEmbed], serverlessBotComponents);
-
-        default:
-            return ephemeral("Pilihan tipe bot tidak valid.");
-    }
-}
-
-function handleServerlessBotSelect(interaction) {
-    const selectedValue = getSelectedValue(interaction);
-
-    if (selectedValue === "serverless_bot_price") {
-        return paginationReply("serverless_bot_price");
+    if (Object.hasOwn(paginationLists, selectedValue)) {
+        return paginationReply(selectedValue);
     }
 
-    const embed = getSelectedEmbed(serverlessBotReplies, selectedValue);
+    const staticEmbed = getSelectedEmbed(staticInfoEmbeds, selectedValue);
+    if (staticEmbed) {
+        return ephemeralEmbed([staticEmbed]);
+    }
 
-    return embed ? ephemeralEmbed([embed]) : unavailableOption();
+    return unavailableOption();
 }
 
 function handlePaginationButton(interaction, prefix) {
@@ -386,11 +233,9 @@ function handlePaginationButton(interaction, prefix) {
 
 export const priceListComponentHandlers = {
     bot_price_list_select: handlePriceListSelect,
-    bot_type: handleBotSelect,
-    serverless_bot_pricelist: handleServerlessBotSelect,
-    "maintenance:": (interaction) => handlePaginationButton(interaction, "maintenance"),
+    "bot_normal_price:": (interaction) => handlePaginationButton(interaction, "bot_normal_price"),
+    "bot_serverless_price:": (interaction) =>
+        handlePaginationButton(interaction, "bot_serverless_price"),
+    "maintenance_price:": (interaction) => handlePaginationButton(interaction, "maintenance_price"),
     "add_on:": (interaction) => handlePaginationButton(interaction, "add_on"),
-    "bot_price:": (interaction) => handlePaginationButton(interaction, "bot_price"),
-    "serverless_bot_price:": (interaction) =>
-        handlePaginationButton(interaction, "serverless_bot_price"),
 };
