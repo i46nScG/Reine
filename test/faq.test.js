@@ -9,8 +9,11 @@ test("hosting FAQ replies with an ephemeral embed", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Hosting dan Infrastruktur");
-    assert.match(response.data.embeds[0].description, /Apakah layanan pembuatan Karya Akhir/);
+    assert.equal(response.data.embeds[0].title, "Hosting & Infrastruktur");
+    assert.match(
+        response.data.embeds[0].description,
+        /Apakah pembuatan bot sudah termasuk hosting/,
+    );
 });
 
 test("services FAQ replies with its development information", () => {
@@ -19,8 +22,8 @@ test("services FAQ replies with its development information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Layanan dan Pengerjaan");
-    assert.match(response.data.embeds[0].description, /maksimal \*\*1 minggu\*\*/);
+    assert.equal(response.data.embeds[0].title, "Layanan & Pengerjaan");
+    assert.match(response.data.embeds[0].description, /1 hingga 7 hari kerja/);
 });
 
 test("payments FAQ replies with its payment information", () => {
@@ -29,8 +32,8 @@ test("payments FAQ replies with its payment information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Pembayaran dan Biaya");
-    assert.match(response.data.embeds[0].description, /Kapan saya harus membayar/);
+    assert.equal(response.data.embeds[0].title, "Pembayaran & Biaya");
+    assert.match(response.data.embeds[0].description, /Kapan saya harus melakukan pembayaran/);
 });
 
 test("support FAQ replies with its contact information", () => {
@@ -39,7 +42,7 @@ test("support FAQ replies with its contact information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Kontak Support");
+    assert.equal(response.data.embeds[0].title, "Kontak & Bantuan");
     assert.match(response.data.embeds[0].description, /1251433206914486343/);
 });
 

@@ -5,10 +5,10 @@ import { componentHandlers } from "../handler/commands.js";
 import { MessageFlags } from "../utils/constants.js";
 
 const cases = [
-    ["gopay_transfer", "Ketentuan Pembayaran via GoPay", /GoPay Plus/],
-    ["scan_qris", "Ketentuan Pembayaran via QRIS", /QRIS/],
-    ["trakteer", "Ketentuan Pembayaran via Trakteer", /biaya administrasi tambahan sebesar 5%/],
-    ["disclaimer", "Disclaimer", /Perlindungan Konsumen/],
+    ["gopay_transfer", "Pembayaran via GoPay", /Biaya administrasi atau biaya transfer antarbank/],
+    ["scan_qris", "Pembayaran via QRIS", /Mendukung semua aplikasi e-wallet dan m-banking/],
+    ["trakteer", "Pembayaran via Trakteer", /biaya admin sebesar 5%/],
+    ["disclaimer", "Disclaimer & Ketentuan Umum", /Semua transaksi bersifat final/],
 ];
 
 for (const [value, title, description] of cases) {

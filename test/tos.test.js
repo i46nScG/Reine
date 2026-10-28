@@ -6,26 +6,27 @@ import { MessageFlags } from "../utils/constants.js";
 
 const expectedSections = {
     service_information: "Informasi Penyedia Layanan",
-    definition_and_service: "Definisi Istilah Kunci dan Layanan",
-    tos_service: "Ketentuan Penggunaan Layanan",
-    haki_terms: "Hak Kekayaan Intelektual",
-    payment_terms: "Ketentuan Pembayaran",
-    work_time: "Waktu Pengerjaan dan Penyerahan",
-    cancellation_terms: "Kebijakan Pembatalan dan Kompensasi",
-    support_maintenance: "Dukungan dan Perawatan",
-    dispute_resolution: "Penyelesaian Sengketa",
-    tos_changes: "Perubahan Syarat dan Ketentuan",
-    official_contact: "Kontak dan Dukungan Resmi",
+    definition_and_service: "Layanan Kami",
+    tos_service: "Aturan Pemesanan",
+    haki_terms: "Hak Cipta & Lisensi",
+    payment_terms: "Pembayaran",
+    work_time: "Pengerjaan & Revisi",
+    cancellation_terms: "Pembatalan Proyek",
+    support_maintenance: "Garansi & Support",
+    dispute_resolution: "Penyelesaian Masalah",
+    tos_changes: "Perubahan S&K",
+    official_contact: "Kontak Kami",
     closing: "Penutup",
 };
 
 test("ToS select handler replies with an ephemeral embed for every section", () => {
-    for (const [value] of Object.entries(expectedSections)) {
+    for (const [value, title] of Object.entries(expectedSections)) {
         const response = tosComponentHandlers.tos_select_menu({
             data: { values: [value] },
         });
 
         assert.equal(response.data.flags, MessageFlags.EPHEMERAL, value);
+        assert.equal(response.data.embeds[0].title, title, value);
         assert.ok(response.data.embeds[0].description.length > 0, value);
     }
 });

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import embedCommand from "../commands/embed.js";
-import { ComponentType } from "../utils/constants.js";
+import { ComponentType, MessageFlags } from "../utils/constants.js";
 
 const env = {
     APPLICATION_ID: "12345678901234567",
@@ -19,8 +19,14 @@ const attachment = {
 
 function embedFormComponents({ withImage = false, title = "Test title" } = {}) {
     return [
-        { type: ComponentType.LABEL, component: { custom_id: "title", value: title } },
-        { type: ComponentType.LABEL, component: { custom_id: "color", value: "#123456" } },
+        {
+            type: ComponentType.LABEL,
+            component: { custom_id: "title", value: title },
+        },
+        {
+            type: ComponentType.LABEL,
+            component: { custom_id: "color", value: "#123456" },
+        },
         {
             type: ComponentType.LABEL,
             component: { custom_id: "description", value: "Test description" },
@@ -216,4 +222,108 @@ test("embed lookup previews an existing image", async () => {
     const responseRequest = requests.find(({ url }) => url.endsWith("/messages/@original"));
     const payload = JSON.parse(responseRequest.options.body);
     assert.equal(payload.embeds[0].image.url, existingImageUrl);
+});
+
+test("embed command requires a guild administrator and presents create or lookup forms", () => {
+    const denied = embedCommand.execute({
+        member: { permissions: "0" },
+        guild_id: "45678901234567890",
+        data: { options: [{ name: "option", value: "create" }] },
+    });
+    assert.equal(denied.data.embeds[0].title, "Access Denied");
+
+    const noGuild = embedCommand.execute({
+        member: { permissions: "8" },
+        data: { options: [{ name: "option", value: "create" }] },
+    });
+    assert.equal(noGuild.data.embeds[0].title, "Access Denied");
+
+    const lookup = embedCommand.execute({
+        member: { permissions: "8" },
+        guild_id: "45678901234567890",
+        data: { options: [{ name: "option", value: "edit" }] },
+    });
+    assert.equal(lookup.data.custom_id, "embed:lookup");
+    assert.equal(
+        lookup.data.components.find(({ component }) => component?.custom_id === "message_id")
+            .component.max_length,
+        20,
+    );
+});
+
+test("embed creation rejects invalid input without sending a channel message", async () => {
+    const requests = [];
+    const invalid = interaction("embed:create");
+    invalid.data.components.find(
+        ({ component }) => component?.custom_id === "color",
+    ).component.value = "not-a-color";
+
+    await withFetch(
+        async (url, options) => {
+            requests.push({ url, options });
+            return Response.json({});
+        },
+        async () => {
+            await embedCommand.modalHandlers["embed:create"](invalid, env);
+        },
+    );
+
+    assert.equal(requests.length, 1);
+    assert.ok(requests[0].url.endsWith("/messages/@original"));
+    assert.match(JSON.parse(requests[0].options.body).embeds[0].description, /Invalid color/);
+});
+
+test("embed edit buttons are scoped to the administrator who opened the edit flow", async () => {
+    const unauthorized = interaction("embed:open-edit");
+    unauthorized.member.user.id = "different-user";
+    unauthorized.data.custom_id = `embed:open-edit:${userId}:${messageId}`;
+    const response = await embedCommand.componentHandlers["embed:open-edit:"](unauthorized, env);
+
+    assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
+    assert.equal(response.data.embeds[0].title, "Access Denied");
+});
+
+test("embed lookup rejects invalid IDs and messages not owned by the bot", async () => {
+    const invalidLookup = interaction("embed:lookup");
+    invalidLookup.data.components = [{ component: { custom_id: "message_id", value: "invalid" } }];
+    const invalidRequests = [];
+    await withFetch(
+        async (url, options) => {
+            invalidRequests.push({ url, options });
+            return Response.json({});
+        },
+        async () => {
+            await embedCommand.modalHandlers["embed:lookup"](invalidLookup, env);
+        },
+    );
+    assert.equal(invalidRequests.length, 1);
+    assert.match(
+        JSON.parse(invalidRequests[0].options.body).embeds[0].description,
+        /valid Discord message ID/,
+    );
+
+    const validLookup = interaction("embed:lookup");
+    validLookup.data.components = [{ component: { custom_id: "message_id", value: messageId } }];
+    const requests = [];
+    await withFetch(
+        async (url, options) => {
+            requests.push({ url, options });
+            if (options.method === "GET") {
+                return Response.json({
+                    ...originalMessageFetch(),
+                    author: { id: userId, bot: false },
+                });
+            }
+            return Response.json({});
+        },
+        async () => {
+            await embedCommand.modalHandlers["embed:lookup"](validLookup, env);
+        },
+    );
+
+    const responseRequest = requests.find(({ url }) => url.endsWith("/messages/@original"));
+    assert.match(
+        JSON.parse(responseRequest.options.body).embeds[0].description,
+        /message is not sent by this bot/,
+    );
 });

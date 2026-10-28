@@ -4,10 +4,10 @@ import { componentHandlers, findInteractionHandler } from "../handler/commands.j
 import { MessageFlags } from "../utils/constants.js";
 
 const packageChoices = [
-    ["basic_package", "Paket Dasar (Rp10.000)"],
-    ["regular_package", "Paket Reguler (Rp15.000)"],
-    ["lite_package", "Paket Lite (Rp20.000)"],
-    ["enterprise_package", "Paket Enterprise (Rp25.000)"],
+    ["basic_package", "Paket Dasar"],
+    ["regular_package", "Paket Reguler"],
+    ["lite_package", "Paket Lite"],
+    ["enterprise_package", "Paket Enterprise"],
 ];
 
 test("each server package selection returns only its matching ephemeral embed", () => {
@@ -37,9 +37,9 @@ test("extra notes selection returns the notes and support contact", () => {
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
     assert.equal(response.data.embeds.length, 1);
-    assert.equal(response.data.embeds[0].title, "Catatan Tambahan");
+    assert.equal(response.data.embeds[0].title, "Catatan Tambahan & Kontak");
     assert.doesNotMatch(description, /###|📦/);
-    assert.match(description, /\*\*Kontak\*\*/);
+    assert.match(description, /\*\*Kontak & Dukungan:\*\*/);
     assert.match(description, /1251433206914486343/);
 });
 
