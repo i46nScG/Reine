@@ -1,4 +1,5 @@
 import { sendMessage } from "./discord.js";
+import { HttpStatus } from "./constants.js";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -14,7 +15,10 @@ async function fetchWithRetry(env, url, options, maxRetries = 5) {
             return res;
         }
 
-        if (res.status === 429 || res.status >= 500) {
+        if (
+            res.status === HttpStatus.TOO_MANY_REQUESTS ||
+            res.status >= HttpStatus.INTERNAL_SERVER_ERROR
+        ) {
             const retryAfter = Number(res.headers.get("Retry-After"));
 
             if (!Number.isNaN(retryAfter) && retryAfter > 0) {

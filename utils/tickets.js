@@ -29,6 +29,7 @@ import {
 import {
     ButtonStyle,
     ComponentType,
+    HttpStatus,
     InteractionResponseType,
     MessageFlags,
     PermissionFlags,
@@ -229,19 +230,17 @@ export function ticketPanelPayload() {
                 color: 0x393a41,
                 author: {
                     name: "Harmony Hub — Ticket Service",
-                    icon_url:
-                        "https://cdn.discordapp.com/icons/1101864405492306040/e54e9e26a4e2c227121b517b7adb239f.png?size=1024",
                 },
                 description:
                     "Welcome to the **Harmony Hub** ticket system.\nSelect an option below to continue.",
                 fields: [
                     {
-                        name: "🏷️ Buy",
+                        name: "Buy",
                         value: "Order a development service (bot, server, etc).",
                         inline: true,
                     },
                     {
-                        name: "✋ Ask",
+                        name: "Ask",
                         value: "Consultation before ordering or general questions.",
                         inline: true,
                     },
@@ -263,14 +262,12 @@ export function ticketPanelPayload() {
                         type: ComponentType.BUTTON,
                         custom_id: IDS.BUY_BUTTON,
                         label: "Buy",
-                        emoji: { name: "🏷️" },
                         style: ButtonStyle.PRIMARY,
                     },
                     {
                         type: ComponentType.BUTTON,
                         custom_id: IDS.ASK_BUTTON,
                         label: "Ask",
-                        emoji: { name: "✋" },
                         style: ButtonStyle.SECONDARY,
                     },
                 ],
@@ -629,7 +626,11 @@ export async function handleCloseModal(interaction, env) {
                     description: `This ticket has been closed for the following reason: ${reason}`,
                     fields: [
                         { name: "Closed By", value: `<@${user.id}>`, inline: true },
-                        { name: "Ticket Owner", value: `<@${ticket.owner_id}>`, inline: true },
+                        {
+                            name: "Ticket Owner",
+                            value: `<@${ticket.owner_id}>`,
+                            inline: true,
+                        },
                     ],
                 },
             ],
@@ -831,7 +832,8 @@ export async function recoverTickets(env) {
                     try {
                         thread = await getChannel(env, ticket.thread_id);
                     } catch (error) {
-                        if (!error.message.includes("Discord API error 404")) throw error;
+                        if (!error.message.includes(`Discord API error ${HttpStatus.NOT_FOUND}`))
+                            throw error;
                     }
 
                     if (
@@ -844,7 +846,10 @@ export async function recoverTickets(env) {
                         try {
                             await removeThreadMember(env, ticket.thread_id, ticket.owner_id);
                         } catch {}
-                        await modifyThread(env, ticket.thread_id, { locked: true, archived: true });
+                        await modifyThread(env, ticket.thread_id, {
+                            locked: true,
+                            archived: true,
+                        });
                     }
                 }
                 await markTicketFailed(env.DB, ticket.id, "Ticket creation timed out");
@@ -856,7 +861,7 @@ export async function recoverTickets(env) {
                 try {
                     thread = await getChannel(env, ticket.thread_id);
                 } catch (error) {
-                    if (error.message.includes("Discord API error 404")) {
+                    if (error.message.includes(`Discord API error ${HttpStatus.NOT_FOUND}`)) {
                         await markTicketClosed(env.DB, ticket.id);
                         continue;
                     }
@@ -874,7 +879,10 @@ export async function recoverTickets(env) {
                 try {
                     await removeThreadMember(env, ticket.thread_id, ticket.owner_id);
                 } catch {}
-                await modifyThread(env, ticket.thread_id, { locked: true, archived: true });
+                await modifyThread(env, ticket.thread_id, {
+                    locked: true,
+                    archived: true,
+                });
                 await markTicketClosed(env.DB, ticket.id);
             }
         } catch (error) {

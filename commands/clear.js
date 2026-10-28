@@ -1,4 +1,5 @@
 import config from "../config.js";
+import { ApplicationCommandOptionType, PermissionFlags } from "../utils/constants.js";
 import { fetchRecentMessages, bulkDeleteMessages } from "../utils/discord.js";
 import { ephemeralEmbed } from "../utils/responses.js";
 
@@ -55,12 +56,12 @@ export default {
     name: "clear",
     definition: {
         description: "Bulk delete messages in this channel",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
         options: [
             {
                 name: "amount",
                 description: "Number of messages to delete (2-100)",
-                type: 4,
+                type: ApplicationCommandOptionType.INTEGER,
                 required: true,
                 min_value: 2,
                 max_value: 100,

@@ -1,5 +1,11 @@
 import config from "../config.js";
-import { ButtonStyle, ComponentType, PermissionFlags, TextInputStyle } from "../utils/constants.js";
+import {
+    ApplicationCommandOptionType,
+    ButtonStyle,
+    ComponentType,
+    PermissionFlags,
+    TextInputStyle,
+} from "../utils/constants.js";
 import {
     editMessage,
     editMessageWithFiles,
@@ -183,7 +189,9 @@ async function fetchEditableMessage(interaction, env, messageId) {
     }
 
     if (!Array.isArray(message.embeds) || message.embeds.length === 0) {
-        return { error: "The message does not have any embeds that can be edited." };
+        return {
+            error: "The message does not have any embeds that can be edited.",
+        };
     }
 
     const embed = message.embeds[0];
@@ -491,12 +499,12 @@ export default {
     name: "embed",
     definition: {
         description: "Create or edit embeds in this channel",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
         options: [
             {
                 name: "option",
                 description: "Select the action you want to perform",
-                type: 3,
+                type: ApplicationCommandOptionType.STRING,
                 required: true,
                 choices: [
                     { name: "Create", value: "create" },

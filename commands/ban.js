@@ -1,4 +1,5 @@
 import config from "../config.js";
+import { ApplicationCommandOptionType, PermissionFlags } from "../utils/constants.js";
 import { banUser } from "../utils/discord.js";
 import { ephemeralEmbed } from "../utils/responses.js";
 
@@ -20,7 +21,10 @@ async function execute(interaction, env) {
     const displayName = resolvedUser ? resolvedUser.username : `<@${userId}>`;
 
     try {
-        await banUser(env, interaction.guild_id, userId, { reason, deleteMessageSeconds: 604800 });
+        await banUser(env, interaction.guild_id, userId, {
+            reason,
+            deleteMessageSeconds: 604800,
+        });
 
         return ephemeralEmbed([
             {
@@ -46,18 +50,18 @@ export default {
     name: "ban",
     definition: {
         description: "Ban a user from this server",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
         options: [
             {
                 name: "user",
                 description: "User to ban",
-                type: 6,
+                type: ApplicationCommandOptionType.USER,
                 required: true,
             },
             {
                 name: "reason",
                 description: "Reason for the ban (optional)",
-                type: 3,
+                type: ApplicationCommandOptionType.STRING,
                 required: false,
             },
         ],

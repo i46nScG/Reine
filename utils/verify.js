@@ -1,4 +1,5 @@
 import nacl from "tweetnacl";
+import { HttpStatus } from "./constants.js";
 
 function hexToUint8Array(hex) {
     if (!hex || hex.length % 2 !== 0) return null;
@@ -16,7 +17,11 @@ export async function readAndVerifyDiscordRequest(request, publicKey) {
     const timestamp = request.headers.get("x-signature-timestamp");
 
     if (!signature || !timestamp) {
-        return { ok: false, status: 401, error: "Missing Discord signature headers" };
+        return {
+            ok: false,
+            status: HttpStatus.UNAUTHORIZED,
+            error: "Missing Discord signature headers",
+        };
     }
 
     const rawBody = await request.text();
@@ -25,17 +30,29 @@ export async function readAndVerifyDiscordRequest(request, publicKey) {
     const publicKeyBytes = hexToUint8Array(publicKey);
 
     if (!signatureBytes || !publicKeyBytes) {
-        return { ok: false, status: 401, error: "Invalid signature encoding" };
+        return {
+            ok: false,
+            status: HttpStatus.UNAUTHORIZED,
+            error: "Invalid signature encoding",
+        };
     }
 
     const valid = nacl.sign.detached.verify(message, signatureBytes, publicKeyBytes);
     if (!valid) {
-        return { ok: false, status: 401, error: "Invalid request signature" };
+        return {
+            ok: false,
+            status: HttpStatus.UNAUTHORIZED,
+            error: "Invalid request signature",
+        };
     }
 
     try {
         return { ok: true, interaction: JSON.parse(rawBody) };
     } catch {
-        return { ok: false, status: 400, error: "Invalid JSON body" };
+        return {
+            ok: false,
+            status: HttpStatus.BAD_REQUEST,
+            error: "Invalid JSON body",
+        };
     }
 }

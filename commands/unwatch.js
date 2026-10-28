@@ -1,4 +1,5 @@
 import config from "../config.js";
+import { ApplicationCommandOptionType, PermissionFlags } from "../utils/constants.js";
 import { removeAnime, getAllAnime, getAnime } from "../utils/database.js";
 import { ephemeralEmbed, autocompleteResult } from "../utils/responses.js";
 
@@ -11,7 +12,10 @@ async function autocomplete(interaction, env) {
     const choices = watchlist
         .filter((anime) => anime.title.toLowerCase().includes(focused))
         .slice(0, 25)
-        .map((anime) => ({ name: anime.title.slice(0, 100), value: String(anime.anilistId) }));
+        .map((anime) => ({
+            name: anime.title.slice(0, 100),
+            value: String(anime.anilistId),
+        }));
 
     return autocompleteResult(choices);
 }
@@ -55,12 +59,12 @@ export default {
     name: "unwatch",
     definition: {
         description: "Remove an anime from the watchlist.",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
         options: [
             {
                 name: "anime",
                 description: "Pick an anime from your watchlist",
-                type: 3,
+                type: ApplicationCommandOptionType.STRING,
                 required: true,
                 autocomplete: true,
             },

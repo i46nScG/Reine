@@ -1,4 +1,5 @@
 import config from "../config.js";
+import { ApplicationCommandOptionType, PermissionFlags } from "../utils/constants.js";
 import { searchAnime, getAnimeStatus } from "../utils/anilist.js";
 import { addAnime, getAnime } from "../utils/database.js";
 import { ephemeralEmbed, autocompleteResult } from "../utils/responses.js";
@@ -90,12 +91,12 @@ export default {
     name: "watch",
     definition: {
         description: "Add an anime to the notification watchlist.",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
         options: [
             {
                 name: "anime",
                 description: "Search for an anime by title",
-                type: 3,
+                type: ApplicationCommandOptionType.STRING,
                 required: true,
                 autocomplete: true,
             },

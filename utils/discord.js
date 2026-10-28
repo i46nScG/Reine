@@ -1,3 +1,5 @@
+import { ChannelType, HttpStatus } from "./constants.js";
+
 const DISCORD_EPOCH = 1420070400000;
 const MAX_MESSAGE_AGE = 14 * 24 * 60 * 60 * 1000;
 
@@ -13,7 +15,7 @@ export async function discordRequest(env, method, path, body = null, extraHeader
             body: body ? JSON.stringify(body) : undefined,
         });
 
-        if (res.status === 429) {
+        if (res.status === HttpStatus.TOO_MANY_REQUESTS) {
             const rateLimit = await res.json();
 
             await new Promise((resolve) => setTimeout(resolve, rateLimit.retry_after * 1000));
@@ -26,7 +28,7 @@ export async function discordRequest(env, method, path, body = null, extraHeader
             throw new Error(`Discord API error ${res.status}: ${errorText}`);
         }
 
-        if (res.status === 204) {
+        if (res.status === HttpStatus.NO_CONTENT) {
             return null;
         }
 
@@ -66,7 +68,7 @@ export function getGuildMember(env, guildId, userId) {
 
 export function createPrivateThread(env, parentChannelId, payload) {
     return discordRequest(env, "POST", `/channels/${parentChannelId}/threads`, {
-        type: 12,
+        type: ChannelType.PRIVATE_THREAD,
         invitable: false,
         ...payload,
     });

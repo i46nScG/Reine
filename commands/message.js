@@ -1,5 +1,5 @@
 import config from "../config.js";
-import { ComponentType, TextInputStyle } from "../utils/constants.js";
+import { ComponentType, PermissionFlags, TextInputStyle } from "../utils/constants.js";
 import { sendMessage, sendMessageWithFiles, editOriginalResponse } from "../utils/discord.js";
 import { modal, getModalText, getModalFiles } from "../utils/responses.js";
 
@@ -58,7 +58,10 @@ async function handleModalSubmit(interaction, env) {
     for (const attachment of attachments) {
         try {
             const res = await fetch(attachment.url);
-            files.push({ blob: await res.blob(), name: attachment.filename || "attachment.png" });
+            files.push({
+                blob: await res.blob(),
+                name: attachment.filename || "attachment.png",
+            });
         } catch (err) {
             console.error(
                 `[message modal] Failed to fetch attachment ${attachment.filename}:`,
@@ -109,7 +112,7 @@ export default {
     name: "message",
     definition: {
         description: "Compose a message to send in this channel",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
     },
     execute,
     modalId: "message",

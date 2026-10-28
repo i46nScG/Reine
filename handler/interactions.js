@@ -4,7 +4,12 @@ import {
     findInteractionHandler,
     modalHandlers,
 } from "./commands.js";
-import { InteractionResponseType, InteractionType, MessageFlags } from "../utils/constants.js";
+import {
+    HttpStatus,
+    InteractionResponseType,
+    InteractionType,
+    MessageFlags,
+} from "../utils/constants.js";
 import { json, methodNotAllowed } from "../utils/http.js";
 import { readAndVerifyDiscordRequest } from "../utils/verify.js";
 
@@ -122,6 +127,6 @@ export async function handleDiscordInteraction(request, env, ctx) {
         case InteractionType.MODAL_SUBMIT:
             return handleModal(interaction, env, ctx);
         default:
-            return json({ error: "Unknown interaction type" }, 400);
+            return json({ error: "Unknown interaction type" }, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,3 +1,4 @@
+import { HttpStatus } from "../utils/constants.js";
 import ban from "../commands/ban.js";
 import clear from "../commands/clear.js";
 import embed from "../commands/embed.js";
@@ -65,7 +66,7 @@ export async function handleCommandRegistration(request, env) {
 
     const authorization = request.headers.get("authorization") ?? "";
     if (authorization !== `Bearer ${env.REGISTER_SECRET}`) {
-        return json({ error: "Unauthorized" }, 401);
+        return json({ error: "Unauthorized" }, HttpStatus.UNAUTHORIZED);
     }
 
     const result = await registerGuildCommands(env, commandDefinitions);

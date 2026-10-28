@@ -50,7 +50,7 @@ export default {
     name: "ticket-panel",
     definition: {
         description: "Create the private-thread ticket panel in this channel",
-        default_member_permissions: "8",
+        default_member_permissions: PermissionFlags.ADMINISTRATOR.toString(),
     },
     execute,
     componentHandlers: ticketComponentHandlers,
