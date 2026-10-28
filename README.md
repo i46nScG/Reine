@@ -20,13 +20,13 @@ Each member can have one active ticket per server. The ticket owner, administrat
 
 The slash commands also include:
 
-| Command | What it does |
-| --- | --- |
-| `/ban` | Ban a member, optionally with a reason. |
-| `/clear` | Bulk-delete 2–100 recent messages in the current channel. |
-| `/message` | Compose a message as the bot, optionally with attachments or as a reply to a message ID. |
-| `/embed` | Create an embed or edit an eligible embed previously sent by the bot. |
-| `/interaction` | Post the Harmony Hub terms-and-conditions message with its interactive menu. |
+| Command        | What it does                                                                             |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| `/ban`         | Ban a member, optionally with a reason.                                                  |
+| `/clear`       | Bulk-delete 2–100 recent messages in the current channel.                                |
+| `/message`     | Compose a message as the bot, optionally with attachments or as a reply to a message ID. |
+| `/embed`       | Create an embed or edit an eligible embed previously sent by the bot.                    |
+| `/interaction` | Post the Harmony Hub terms-and-conditions message with its interactive menu.             |
 
 The moderation, message, embed, and panel-publishing commands are administrator-oriented; `/list` is available to members without administrator permissions.
 
@@ -54,17 +54,17 @@ The Cloudflare Worker and D1 binding are configured in [`wrangler.jsonc`](./wran
 
 Set the following Worker secrets before deploying:
 
-| Secret | Used for |
-| --- | --- |
-| `BOT_TOKEN` | Discord API requests. |
-| `APPLICATION_ID` | Discord application identity and bot-message checks. |
-| `PUBLIC_KEY` | Verifying signed Discord interaction requests. |
-| `GUILD_ID` | Registering guild slash commands. |
-| `NOTIFY_CHANNEL_ID` | Posting new-episode notifications. |
-| `TICKET_LOG_CHANNEL_ID` | Posting ticket close summaries. |
-| `REGISTER_SECRET` | Authorizing slash-command registration requests. |
-| `ANILIST_PROXY_URL` | AniList proxy endpoint. |
-| `ANILIST_PROXY_TOKEN` | Authentication to the AniList proxy. |
+| Secret                  | Used for                                             |
+| ----------------------- | ---------------------------------------------------- |
+| `BOT_TOKEN`             | Discord API requests.                                |
+| `APPLICATION_ID`        | Discord application identity and bot-message checks. |
+| `PUBLIC_KEY`            | Verifying signed Discord interaction requests.       |
+| `GUILD_ID`              | Registering guild slash commands.                    |
+| `NOTIFY_CHANNEL_ID`     | Posting new-episode notifications.                   |
+| `TICKET_LOG_CHANNEL_ID` | Posting ticket close summaries.                      |
+| `REGISTER_SECRET`       | Authorizing slash-command registration requests.     |
+| `ANILIST_PROXY_URL`     | AniList proxy endpoint.                              |
+| `ANILIST_PROXY_TOKEN`   | Authentication to the AniList proxy.                 |
 
 Keep these values private. Do not commit them to the repository.
 
