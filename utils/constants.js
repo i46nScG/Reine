@@ -16,6 +16,20 @@ export const InteractionResponseType = {
     MODAL: 9,
 };
 
+export const ApplicationCommandOptionType = {
+    SUB_COMMAND: 1,
+    SUB_COMMAND_GROUP: 2,
+    STRING: 3,
+    INTEGER: 4,
+    BOOLEAN: 5,
+    USER: 6,
+    CHANNEL: 7,
+    ROLE: 8,
+    MENTIONABLE: 9,
+    NUMBER: 10,
+    ATTACHMENT: 11,
+};
+
 export const ComponentType = {
     ACTION_ROW: 1,
     BUTTON: 2,
@@ -41,6 +55,17 @@ export const ChannelType = {
 export const PermissionFlags = {
     ADMINISTRATOR: 1n << 3n,
     MANAGE_THREADS: 1n << 34n,
+};
+
+export const HttpStatus = {
+    OK: 200,
+    NO_CONTENT: 204,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404,
+    METHOD_NOT_ALLOWED: 405,
+    TOO_MANY_REQUESTS: 429,
+    INTERNAL_SERVER_ERROR: 500,
 };
 
 export const TextInputStyle = {
