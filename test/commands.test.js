@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import banCommand from "../commands/ban.js";
 import clearCommand from "../commands/clear.js";
+import interactionCommand from "../commands/interaction.js";
 import listCommand from "../commands/list.js";
 import messageCommand from "../commands/message.js";
 import ticketPanelCommand from "../commands/ticket-panel.js";
@@ -69,6 +70,14 @@ function modalSubmit(customId, fields, attachments = {}) {
         },
     };
 }
+
+test("interaction command permissions are JSON-serializable", () => {
+    assert.equal(
+        interactionCommand.definition.default_member_permissions,
+        "8",
+    );
+    assert.doesNotThrow(() => JSON.stringify(interactionCommand.definition));
+});
 
 test("list command returns an empty state and formats an existing watchlist", async () => {
     const empty = await listCommand.execute({}, { DB: fakeDatabase() });

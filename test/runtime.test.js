@@ -11,7 +11,7 @@ const env = { PUBLIC_KEY: publicKey };
 
 function signedInteraction(interaction) {
     const body = JSON.stringify(interaction);
-    const timestamp = "1700000000";
+    const timestamp = String(Math.floor(Date.now() / 1000));
     const signature = nacl.sign.detached(
         new TextEncoder().encode(timestamp + body),
         keyPair.secretKey,
@@ -57,7 +57,7 @@ test("interaction endpoint responds to Discord pings and rejects invalid methods
             method: "POST",
             headers: {
                 "x-signature-ed25519": "00".repeat(64),
-                "x-signature-timestamp": "1700000000",
+                "x-signature-timestamp": String(Math.floor(Date.now() / 1000)),
             },
             body: "{}",
         }),

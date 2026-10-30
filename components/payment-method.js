@@ -12,20 +12,20 @@ function createEmbed(title, description) {
 
 const paymentMethodEmbeds = {
     gopay_transfer: createEmbed(
-        "Pembayaran via GoPay",
-        "**Ketentuan:**\nBiaya administrasi atau biaya transfer antarbank ditanggung oleh Klien.\n\n**Panduan Pembayaran:**\n1. Minta nomor tujuan GoPay kepada tim kami di **channel tiket**.\n2. Lakukan transfer sesuai total nominal tagihan.\n3. Kirimkan screenshot bukti transfer berhasil ke tiket untuk proses konfirmasi.",
+        "Paying with GoPay",
+        "**Terms:**\nThe client is responsible for any administration or interbank transfer fees.\n\n**Payment Instructions:**\n1. Ask our team for the GoPay number in the **ticket channel**.\n2. Transfer the total amount due.\n3. Send a screenshot of the successful transfer in the ticket for confirmation.",
     ),
     scan_qris: createEmbed(
-        "Pembayaran via QRIS",
-        "**Ketentuan:**\nMendukung semua aplikasi e-wallet dan m-banking. Biaya layanan platform (jika ada) ditanggung oleh Klien.\n\n**Panduan Pembayaran:**\n1. Minta gambar kode QRIS kepada tim kami di **channel tiket**.\n2. Scan kode QRIS tersebut dan masukkan nominal tagihan.\n3. Kirimkan screenshot bukti transfer berhasil ke tiket untuk proses konfirmasi.",
+        "Paying with QRIS",
+        "**Terms:**\nSupported by all e-wallet and mobile banking apps. The client is responsible for any platform fees.\n\n**Payment Instructions:**\n1. Ask our team for the QRIS code image in the **ticket channel**.\n2. Scan the QRIS code and enter the amount due.\n3. Send a screenshot of the successful transfer in the ticket for confirmation.",
     ),
     trakteer: createEmbed(
-        "Pembayaran via Trakteer",
-        "**Ketentuan:**\nPlatform Trakteer mengenakan **biaya admin sebesar 5%**. Biaya ini ditanggung oleh Klien agar nominal bersih yang diterima tetap sesuai tagihan. Jika keberatan, silakan gunakan metode lain.\n\n**Panduan Pembayaran:**\n1. Buka halaman Trakteer melalui tombol di bawah.\n2. Masukkan nominal tagihan ditambah biaya admin 5%.\n3. Selesaikan transaksi dan kirim screenshot bukti ke tiket.",
+        "Paying with Trakteer",
+        "**Terms:**\nTrakteer charges a **5% administration fee**. The client covers this fee so the net amount received matches the invoice. If you prefer not to pay the fee, please use another method.\n\n**Payment Instructions:**\n1. Open the Trakteer page using the button below.\n2. Enter the invoice amount plus the 5% administration fee.\n3. Complete the transaction and send a screenshot of the receipt in the ticket.",
     ),
     disclaimer: createEmbed(
-        "Disclaimer & Ketentuan Umum",
-        "- Pembayaran proyek dilakukan melalui sistem DP 50%, atau pelunasan 100% di akhir khusus untuk proyek skala kecil.\n- Segala bentuk kesalahan transfer (salah nominal atau salah tujuan) akibat kelalaian Klien bukan tanggung jawab Harmony Hub.\n- Semua transaksi bersifat final setelah diverifikasi.\n- Bukti transfer digital wajib selalu disertakan setiap kali melakukan pembayaran.",
+        "Disclaimer & General Terms",
+        "- Project payments use a 50% down payment, or 100% payment at the end for small projects only.\n- Harmony Hub is not responsible for transfer errors (incorrect amount or recipient) caused by the client's negligence.\n- All transactions are final once verified.\n- Digital proof of transfer must be included with every payment.",
     ),
 };
 
@@ -39,7 +39,7 @@ function handlePaymentMethodSelect(interaction) {
         return ephemeralEmbed([
             {
                 color: config.color.default,
-                description: "Pilihan metode pembayaran ini belum tersedia.",
+                description: "This payment method is not available.",
             },
         ]);
     }

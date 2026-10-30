@@ -4,30 +4,32 @@ import { componentHandlers } from "../handler/commands.js";
 import { tosComponentHandlers } from "../components/tos.js";
 import { MessageFlags } from "../utils/constants.js";
 
-const expectedSections = {
-    service_information: "Informasi Penyedia Layanan",
-    definition_and_service: "Layanan Kami",
-    tos_service: "Aturan Pemesanan",
-    haki_terms: "Hak Cipta & Lisensi",
-    payment_terms: "Pembayaran",
-    work_time: "Pengerjaan & Revisi",
-    cancellation_terms: "Pembatalan Proyek",
-    support_maintenance: "Garansi & Support",
-    dispute_resolution: "Penyelesaian Masalah",
-    tos_changes: "Perubahan S&K",
-    official_contact: "Kontak Kami",
-    closing: "Penutup",
+const expectedSectionHeadings = {
+    service_information: "Service Provider Information",
+    definition_and_service: "Our Services",
+    tos_service: "Order Terms & Workflow",
+    haki_terms: "Copyright & Code License",
+    payment_terms: "Payment & Delivery",
+    work_time: "Development Timeline & Revisions",
+    cancellation_terms: "Project Cancellation & Compensation",
+    support_maintenance: "Warranty & After-Sales Support",
+    dispute_resolution: "Dispute Resolution",
+    tos_changes: "Changes to the Terms",
+    official_contact: "Official Contact",
+    closing: "Closing",
 };
 
-test("ToS select handler replies with an ephemeral embed for every section", () => {
-    for (const [value, title] of Object.entries(expectedSections)) {
+test("ToS select handler replies with an ephemeral titled embed for every section", () => {
+    for (const [value, title] of Object.entries(expectedSectionHeadings)) {
         const response = tosComponentHandlers.tos_select_menu({
             data: { values: [value] },
         });
+        const embed = response.data.embeds[0];
 
         assert.equal(response.data.flags, MessageFlags.EPHEMERAL, value);
-        assert.equal(response.data.embeds[0].title, title, value);
-        assert.ok(response.data.embeds[0].description.length > 0, value);
+        assert.equal(embed.title, title, value);
+        assert.ok(embed.description.length > 0, value);
+        assert.ok(!embed.description.startsWith("## "), value);
     }
 });
 
@@ -41,5 +43,5 @@ test("unknown ToS sections return the unavailable fallback embed", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].description, "Pilihan ini belum tersedia.");
+    assert.equal(response.data.embeds[0].description, "This option is not available.");
 });

@@ -5,10 +5,10 @@ import { componentHandlers } from "../handler/commands.js";
 import { MessageFlags } from "../utils/constants.js";
 
 const cases = [
-    ["gopay_transfer", "Pembayaran via GoPay", /Biaya administrasi atau biaya transfer antarbank/],
-    ["scan_qris", "Pembayaran via QRIS", /Mendukung semua aplikasi e-wallet dan m-banking/],
-    ["trakteer", "Pembayaran via Trakteer", /biaya admin sebesar 5%/],
-    ["disclaimer", "Disclaimer & Ketentuan Umum", /Semua transaksi bersifat final/],
+    ["gopay_transfer", "Paying with GoPay", /administration or interbank transfer fees/],
+    ["scan_qris", "Paying with QRIS", /Supported by all e-wallet and mobile banking apps/],
+    ["trakteer", "Paying with Trakteer", /5% administration fee/],
+    ["disclaimer", "Disclaimer & General Terms", /All transactions are final/],
 ];
 
 for (const [value, title, description] of cases) {
@@ -46,6 +46,6 @@ test("unknown payment methods return an ephemeral fallback", () => {
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
     assert.equal(
         response.data.embeds[0].description,
-        "Pilihan metode pembayaran ini belum tersedia.",
+        "This payment method is not available.",
     );
 });

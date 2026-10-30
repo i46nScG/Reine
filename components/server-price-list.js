@@ -11,24 +11,24 @@ function createEmbed(title, description) {
 
 const serverPriceEmbeds = {
     basic_package: createEmbed(
-        "Paket Dasar",
-        "**Harga:** Rp10.000\n\nCocok untuk server personal, teman mabar, atau komunitas kecil.\n\n**Benefit & Fitur:**\n- Penataan channel (teks dan voice) yang rapi.\n- Setup role inti (Member, Moderator, Admin).\n- Penambahan bot standar sesuai kebutuhan dasar.",
+        "Basic Package",
+        "**Price:** Rp10,000\n\nSuitable for a personal server, gaming friends, or a small community.\n\n**Benefits & Features:**\n- Organize text and voice channels.\n- Set up core roles (Member, Moderator, Admin).\n- Add standard bots to meet basic needs.",
     ),
     regular_package: createEmbed(
-        "Paket Reguler",
-        "**Harga:** Rp15.000\n\nDidesain untuk komunitas yang lebih terorganisir dengan tampilan yang menarik.\n\n**Benefit & Fitur:**\n- Penataan role beserta permission yang lebih terstruktur.\n- Desain channel estetik (menggunakan warna/simbol).\n- Integrasi bot fungsional untuk mengoptimalkan interaksi antar member.",
+        "Standard Package",
+        "**Price:** Rp15,000\n\nDesigned for a more organized community with an appealing look.\n\n**Benefits & Features:**\n- Organize roles and permissions more clearly.\n- Design attractive channels using colors and symbols.\n- Integrate functional bots to improve member interaction.",
     ),
     lite_package: createEmbed(
-        "Paket Lite",
-        "**Harga:** Rp20.000\n\nFokus pada automasi untuk meminimalkan beban kerja administrasi server.\n\n**Benefit & Fitur:**\n- Setup 3 bot utama (misal: verifikasi otomatis, reaction roles).\n- Konfigurasi role yang mendalam dan sangat spesifik.\n- Pengaturan permission channel yang ketat sesuai tingkatan role.",
+        "Lite Package",
+        "**Price:** Rp20,000\n\nFocuses on automation to reduce server administration workload.\n\n**Benefits & Features:**\n- Set up 3 core bots (e.g., automatic verification and reaction roles).\n- Configure roles in detail for specific needs.\n- Set channel permissions according to role levels.",
     ),
     enterprise_package: createEmbed(
-        "Paket Enterprise",
-        "**Harga:** Rp25.000\n\nPaket komplit untuk kebutuhan server publik skala besar atau keperluan bisnis.\n\n**Benefit & Fitur:**\n- Integrasi bot tanpa batas (unlimited bot setup).\n- Aktivasi dan konfigurasi penuh fitur Discord Community.\n- Setup Welcome Screen, Server Rules, dan Server Insights.\n- Sudah otomatis mencakup seluruh benefit dari paket-paket di bawahnya.",
+        "Enterprise Package",
+        "**Price:** Rp25,000\n\nA complete package for large public servers or business needs.\n\n**Benefits & Features:**\n- Unlimited bot integrations and setup.\n- Full activation and configuration of Discord Community features.\n- Set up the Welcome Screen, Server Rules, and Server Insights.\n- Automatically includes all benefits from the lower-tier packages.",
     ),
     extra_notes: createEmbed(
-        "Catatan Tambahan & Kontak",
-        "**Sistem Upgrade Otomatis:**\nSetiap paket level tinggi secara otomatis memiliki kemampuan dan fitur dari level paket sebelumnya.\n\n**Kebutuhan Kustom:**\nJika Anda membutuhkan struktur server di luar daftar paket ini, silakan buat tiket untuk mendapatkan penawaran harga (*Quotation*) khusus.\n\n**Kontak & Dukungan:**\nUntuk konsultasi gratis, hubungi tim kami di channel <#1251433206914486343> pada server Discord Harmony Hub.",
+        "Additional Notes & Contact",
+        "**Automatic Upgrades:**\nEach higher-tier package automatically includes the capabilities and features of the lower-tier packages.\n\n**Custom Requirements:**\nIf you need a server structure beyond the packages listed here, please open a ticket for a custom quotation.\n\n**Contact & Support:**\nFor a free consultation, contact our team in <#1251433206914486343> on the Harmony Hub Discord server.",
     ),
 };
 
@@ -43,7 +43,7 @@ function handleServerPriceSelect(interaction) {
     return ephemeralEmbed([
         {
             color: config.color.default,
-            description: "Pilihan ini belum tersedia.",
+            description: "This option is not available.",
         },
     ]);
 }

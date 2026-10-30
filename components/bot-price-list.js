@@ -22,118 +22,118 @@ function unavailableOption() {
     return ephemeralEmbed([
         {
             color: config.color.default,
-            description: "Pilihan ini belum tersedia.",
+            description: "This option is not available.",
         },
     ]);
 }
 
 const priceListEmbeds = [
     createEmbed(
-        "Paket Starter Bot",
-        "**Harga:** Rp50.000 - Rp75.000\n\nCocok untuk server baru yang hanya membutuhkan fitur dasar tanpa sistem database yang rumit.\n\n**Benefit & Fitur:**\n- Custom bot ringan sesuai tema server\n- Maksimal 3-5 fitur dasar (misal: info server, simple embed, welcome/goodbye, fun command)\n- Sudah termasuk setup, testing, dan konfigurasi awal\n- Garansi perbaikan bug (bug fixing) 7 hari setelah bot selesai\n\n*Catatan: Paket ini tidak mendukung integrasi API pihak ketiga atau ekonomi kompleks.*",
+        "Bot Starter Package",
+        "**Price:** Rp50,000 - Rp75,000\n\nSuitable for a new server that needs basic features without a complex database system.\n\n**Benefits & Features:**\n- A lightweight custom bot tailored to the server's theme\n- Up to 3-5 basic features (e.g., server info, simple embeds, welcome/goodbye messages, fun commands)\n- Initial setup, testing, and configuration included\n- 7-day bug-fix warranty after bot completion\n\n*Note: This package does not support third-party API integrations or complex economy systems.*",
     ),
     createEmbed(
-        "Paket Community Bot",
-        "**Harga:** Rp75.000 - Rp100.000\n\nDidesain untuk server komunitas aktif yang membutuhkan sistem lebih terstruktur dan pendataan sederhana.\n\n**Benefit & Fitur:**\n- Penggunaan database ringan untuk menyimpan data\n- Fitur menengah (misal: sistem moderasi otomatis, role management, logging chat, auto-response cerdas)\n- Dilengkapi dengan dokumentasi penggunaan command\n- Garansi perbaikan bug 14 hari setelah bot selesai\n\n*Catatan: Harga final menyesuaikan jumlah fitur dan kerumitan sistem moderasi.*",
+        "Community Bot Package",
+        "**Price:** Rp75,000 - Rp100,000\n\nDesigned for active community servers that need a more structured system and basic data storage.\n\n**Benefits & Features:**\n- A lightweight database for storing data\n- Intermediate features (e.g., automated moderation, role management, chat logging, smart auto-responses)\n- Command usage documentation included\n- 14-day bug-fix warranty after bot completion\n\n*Note: The final price depends on the number of features and the complexity of the moderation system.*",
     ),
     createEmbed(
-        "Paket Custom System Bot",
-        "**Harga:** Rp100.000 - Rp200.000\n\nDiperuntukkan bagi bot dengan alur kerja (workflow) khusus yang menjadi pusat operasional server Anda.\n\n**Benefit & Fitur:**\n- Sistem kompleks yang saling terhubung\n- Database terstruktur untuk data berskala besar\n- Contoh fitur: Ticket system, economy system global, integrasi API luar, atau web dashboard sederhana\n- Dokumentasi penuh dan bantuan setup mendetail\n- Garansi perbaikan bug 14-30 hari (tergantung project)\n\n*Catatan: Pengerjaan lebih lama dan diuji secara ekstensif.*",
+        "Custom System Bot Package",
+        "**Price:** Rp100,000 - Rp200,000\n\nFor bots with custom workflows that serve as the operational hub for your server.\n\n**Benefits & Features:**\n- Complex, interconnected systems\n- A structured database for large-scale data\n- Example features: ticket systems, global economy systems, external API integrations, or a simple web dashboard\n- Full documentation and detailed setup assistance\n- 14-30-day bug-fix warranty, depending on the project\n\n*Note: Development takes longer and includes extensive testing.*",
     ),
 ];
 
 const serverlessBotPricePages = [
     createEmbed(
         "Serverless Starter",
-        "**Harga:** Rp100.000 - Rp150.000\n\nBerjalan penuh menggunakan Cloudflare Workers. Sangat cocok jika Anda ingin bot interaktif tanpa perlu menyewa hosting bulanan.\n\n**Benefit & Fitur:**\n- Fokus pada interaksi dasar (Slash commands, buttons, select menu)\n- Maksimal 3 fitur ringan\n- Berpotensi gratis biaya hosting (memanfaatkan Free Plan Cloudflare)\n- Garansi perbaikan bug 7 hari",
+        "**Price:** Rp100,000 - Rp150,000\n\nRuns entirely on Cloudflare Workers. Ideal if you want an interactive bot without paying for monthly hosting.\n\n**Benefits & Features:**\n- Focuses on basic interactions (slash commands, buttons, select menus)\n- Up to 3 lightweight features\n- Hosting may be free using the Cloudflare Free Plan\n- 7-day bug-fix warranty",
     ),
     createEmbed(
         "Serverless Community",
-        "**Harga:** Rp150.000 - Rp200.000\n\nSistem serverless untuk komunitas yang membutuhkan pendataan dan alur interaksi yang lebih dalam.\n\n**Benefit & Fitur:**\n- Terintegrasi dengan database dan API pihak ketiga\n- Contoh interaksi kompleks: Sistem registrasi via modal, sistem tiket, atau role management berbasis form\n- Struktur project rapi dengan dokumentasi lengkap\n- Garansi perbaikan bug 14 hari",
+        "**Price:** Rp150,000 - Rp200,000\n\nA serverless system for communities that need data storage and more advanced interaction flows.\n\n**Benefits & Features:**\n- Integrates with databases and third-party APIs\n- Complex interaction examples: modal-based registration, ticket systems, or form-based role management\n- Well-organized project structure with complete documentation\n- 14-day bug-fix warranty",
     ),
     createEmbed(
         "Serverless Custom System",
-        "**Harga:** Rp200.000 - Rp250.000\n\nProject serverless berskala besar untuk workflow spesifik yang membutuhkan skalabilitas tinggi.\n\n**Benefit & Fitur:**\n- Mendukung external webhook, multiple API, dan task terjadwal (cron jobs)\n- Sistem custom sesuai alur bisnis atau server Anda\n- Penanganan interaksi tingkat lanjut dan testing mendetail\n- Garansi perbaikan bug 14-30 hari",
+        "**Price:** Rp200,000 - Rp250,000\n\nA large-scale serverless project for specific workflows that require high scalability.\n\n**Benefits & Features:**\n- Supports external webhooks, multiple APIs, and scheduled tasks (cron jobs)\n- Custom systems tailored to your business or server workflows\n- Advanced interaction handling and detailed testing\n- 14-30-day bug-fix warranty",
     ),
 ];
 
 const maintenanceInfoEmbed = createEmbed(
-    "Maintenance Bulanan",
-    "Layanan purnajual (opsional) agar bot tetap stabil, terpantau, dan langsung diperbaiki jika terjadi perubahan sistem dari Discord atau update library, bahkan setelah masa garansi habis.",
+    "Monthly Maintenance",
+    "Optional after-sales service to keep your bot stable and monitored, with fixes for Discord system changes or library updates even after the warranty expires.",
 );
 
 const maintenancePages = [
     createEmbed(
         "Care Basic",
-        "**Harga:** Rp10.000/bulan\n\n- Layanan hosting ringan\n- Restart otomatis jika bot mengalami down/error\n- Perbaikan bug minor dan pengecekan dasar",
+        "**Price:** Rp10,000/month\n\n- Lightweight hosting\n- Automatic restart if the bot goes down or encounters an error\n- Minor bug fixes and basic checks",
     ),
     createEmbed(
         "Care Plus",
-        "**Harga:** Rp20.000/bulan\n\n- Layanan hosting bot yang lebih stabil\n- Monitoring aktif secara berkala\n- Update minor (menyesuaikan versi library)\n- Prioritas dukungan teknis lebih tinggi",
+        "**Price:** Rp20,000/month\n\n- More stable bot hosting\n- Regular active monitoring\n- Minor updates to keep up with library versions\n- Higher priority for technical support",
     ),
     createEmbed(
         "Care Pro",
-        "**Harga:** Rp30.000/bulan\n\n- Layanan hosting & monitoring proaktif\n- Minor feature update setiap bulan\n- Backup database berkala (jika bot menggunakan database)\n- Dukungan teknis prioritas utama",
+        "**Price:** Rp30,000/month\n\n- Hosting and proactive monitoring\n- Monthly minor feature updates\n- Regular database backups (if the bot uses a database)\n- Highest priority for technical support",
     ),
 ];
 
 const addOnInfoEmbed = createEmbed(
-    "Add-on Fitur Tambahan",
-    "Penambahan fitur yang diajukan di tengah pengerjaan (di luar brief awal) akan dihitung terpisah sesuai dengan tingkat kompleksitasnya.",
+    "Additional Feature Add-on",
+    "Features requested during development beyond the original brief are priced separately according to their complexity.",
 );
 
 const addOnPages = [
     createEmbed(
-        "Fitur Basic",
-        "**Harga:** Rp10.000 - Rp20.000 / fitur\n\nFitur tunggal yang tidak memerlukan logika rumit atau database.\n\n**Contoh:** Command informasi teks, simple embed statis, auto-response sederhana.",
+        "Basic Feature",
+        "**Price:** Rp10,000 - Rp20,000 / feature\n\nA single feature that does not require complex logic or a database.\n\n**Examples:** Text information commands, static simple embeds, basic auto-responses.",
     ),
     createEmbed(
-        "Fitur Intermediate",
-        "**Harga:** Rp20.000 - Rp30.000 / fitur\n\nFitur fungsional yang membutuhkan konfigurasi pendataan ringan.\n\n**Contoh:** Sistem moderasi dasar, logging channel, welcome system, simple database user.",
+        "Intermediate Feature",
+        "**Price:** Rp20,000 - Rp30,000 / feature\n\nA functional feature that requires basic data-storage configuration.\n\n**Examples:** Basic moderation systems, channel logging, welcome systems, simple user databases.",
     ),
     createEmbed(
-        "Fitur Advanced",
-        "**Harga:** Rp30.000 - Rp50.000 / fitur\n\nSistem yang membutuhkan waktu pengerjaan khusus dan alur yang kompleks.\n\n**Contoh:** Economy system, ticket system, integrasi API luar, dashboard interaktif.",
+        "Advanced Feature",
+        "**Price:** Rp30,000 - Rp50,000 / feature\n\nA system that requires dedicated development time and complex workflows.\n\n**Examples:** Economy systems, ticket systems, external API integrations, interactive dashboards.",
     ),
 ];
 
 const staticInfoEmbeds = {
     order_guide: createEmbed(
-        "Panduan & Alur Pemesanan",
-        "**1. Konsultasi & Briefing:**\nHubungi kami dan jelaskan secara rinci fitur, referensi, dan alur kerja bot yang Anda inginkan.\n\n**2. Estimasi Harga & Waktu:**\nKami akan menganalisis brief Anda untuk menentukan paket yang sesuai, total biaya, dan estimasi lama pengerjaan (biasanya 1-21 hari kerja).\n\n**3. Pembayaran Awal (DP):**\nProyek baru akan mulai dikerjakan setelah pembayaran penuh atau DP (minimal 50%) dikonfirmasi.\n\n**4. Pengerjaan & Testing:**\nBot akan dibangun, diuji coba, dan Anda berhak mengajukan revisi jika ada yang melenceng dari brief awal.\n\n**5. Pelunasan & Penyerahan:**\nSetelah semuanya sesuai dan pembayaran dilunasi, source code serta akses penuh bot akan diserahkan kepada Anda.",
+        "Ordering Guide & Workflow",
+        "**1. Consultation & Brief:**\nContact us and describe the features, references, and bot workflow you want in detail.\n\n**2. Price & Timeline Estimate:**\nWe will review your brief to determine a suitable package, total cost, and estimated development time (usually 1-21 business days).\n\n**3. Initial Payment (DP):**\nWork begins once the full payment or down payment (at least 50%) is confirmed.\n\n**4. Development & Testing:**\nWe will build and test the bot. You may request revisions if anything differs from the original brief.\n\n**5. Final Payment & Delivery:**\nOnce everything meets the requirements and payment is complete, we will deliver the source code and full bot access.",
     ),
     serverless_info: createEmbed(
-        "Perbedaan Bot Biasa vs Serverless",
-        '**Bot Biasa (24/7 Hosting)**\nBerjalan terus-menerus dan terhubung ke Discord via Gateway. Cocok untuk bot yang memantau pesan secara real-time, mendengarkan voice channel, atau melakukan auto-moderasi berat. Kelemahannya, Anda wajib menyewa VPS atau hosting bulanan agar bot tidak mati.\n\n**Bot Serverless**\nBerjalan menggunakan *Cloudflare Workers* dan hanya "bangun" sesaat ketika menerima trigger (seperti klik tombol atau slash command). Cocok untuk bot utilitas yang berfokus pada interaksi.\n\n**Kenapa Serverless Lebih Mahal di Awal?**\nSistem ini dibangun secara manual melalui HTTP request tanpa framework instan. Namun sebagai gantinya, Anda **berpotensi gratis biaya hosting selamanya** (selama masih dalam limit 100.000 request/hari dari Cloudflare).',
+        "Traditional Bot vs. Serverless",
+        '**Traditional Bot (24/7 Hosting)**\nRuns continuously and connects to Discord through the Gateway. Suitable for bots that monitor messages in real time, listen to voice channels, or perform intensive auto-moderation. The downside is that you must rent a VPS or monthly hosting to keep the bot online.\n\n**Serverless Bot**\nRuns on *Cloudflare Workers* and only "wakes up" briefly when it receives a trigger (such as a button click or slash command). Suitable for utility bots focused on interactions.\n\n**Why Does Serverless Cost More Upfront?**\nThis system is built manually using HTTP requests without an off-the-shelf framework. In return, **hosting may be free indefinitely** (as long as usage stays within Cloudflare\'s 100,000 requests per day limit).',
     ),
     terms_info: createEmbed(
-        "Syarat & Ketentuan Pembayaran",
-        "**Kebijakan Pembayaran:**\n- Harga bersifat final setelah brief disepakati. Penambahan fitur setelah pengerjaan dimulai akan masuk ke tagihan *Add-on*.\n- DP minimal 50% wajib untuk nominal proyek di atas Rp100.000.\n\n**Kebijakan Garansi & Revisi:**\n- Revisi tanpa biaya hanya berlaku jika hasil pengerjaan tidak sesuai dengan SOW (Scope of Work) awal.\n- Garansi *bug fixing* hanya menanggung kesalahan logika pada kode yang kami buat. Garansi batal jika error diakibatkan oleh perubahan API pihak ketiga atau modifikasi kode yang Anda lakukan sendiri.",
+        "Payment Terms & Conditions",
+        "**Payment Policy:**\n- The price is final once the brief is agreed upon. Features added after development begins will be billed as *add-ons*.\n- A minimum 50% down payment is required for projects over Rp100,000.\n\n**Warranty & Revision Policy:**\n- Free revisions are available only when the deliverable does not meet the original SOW (Scope of Work).\n- The *bug-fix* warranty covers logic errors in code written by us only. The warranty is void if an error is caused by a third-party API change or code modifications you make.",
     ),
     faq_notes: createEmbed(
-        "FAQ & Catatan Penting",
-        "**Kenapa dua bot dengan jumlah command sama, harganya bisa beda?**\nHarga kami tidak dihitung per command, melainkan dari kompleksitas logika di baliknya. Command `!ping` tentu jauh lebih murah pengerjaannya dibandingkan command `!buy` yang harus mengecek database, mengurangi saldo, dan memanggil API eksternal.\n\n**Apakah saya wajib ambil layanan Maintenance?**\nTidak, maintenance sepenuhnya opsional. Namun perlu dipahami, Discord dan berbagai library pemrograman selalu mendapatkan update. Tanpa maintenance, bot yang awalnya berjalan lancar bisa saja tiba-tiba error beberapa bulan kemudian akibat sistem lama yang sudah *deprecated* (usang). Maintenance memastikan kami yang akan mengurus perbaikan tersebut.",
+        "FAQ & Important Notes",
+        "**Why can two bots with the same number of commands have different prices?**\nWe do not price by command count, but by the complexity of the logic behind each command. A `!ping` command is much less expensive to build than a `!buy` command that checks a database, deducts a balance, and calls an external API.\n\n**Do I have to purchase maintenance?**\nNo, maintenance is entirely optional. However, Discord and various programming libraries are regularly updated. Without maintenance, a bot that initially works well may encounter errors months later because its systems have become *deprecated*. Maintenance means we will take care of those fixes.",
     ),
 };
 
 const paginationLists = {
     bot_normal_price: {
         pages: priceListEmbeds,
-        invalidPageMessage: "Halaman paket tidak valid.",
+        invalidPageMessage: "Invalid package page.",
     },
     bot_serverless_price: {
         pages: serverlessBotPricePages,
-        invalidPageMessage: "Halaman paket serverless tidak valid.",
+        invalidPageMessage: "Invalid serverless package page.",
     },
     maintenance_price: {
         pages: maintenancePages,
         infoEmbed: maintenanceInfoEmbed,
-        invalidPageMessage: "Halaman maintenance tidak valid.",
+        invalidPageMessage: "Invalid maintenance page.",
     },
     add_on: {
         pages: addOnPages,
         infoEmbed: addOnInfoEmbed,
-        invalidPageMessage: "Halaman add-on tidak valid.",
+        invalidPageMessage: "Invalid add-on page.",
     },
 };
 

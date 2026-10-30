@@ -9,10 +9,10 @@ test("hosting FAQ replies with an ephemeral embed", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Hosting & Infrastruktur");
+    assert.equal(response.data.embeds[0].title, "Hosting & Infrastructure");
     assert.match(
         response.data.embeds[0].description,
-        /Apakah pembuatan bot sudah termasuk hosting/,
+        /Is hosting included when you build a bot/,
     );
 });
 
@@ -22,8 +22,8 @@ test("services FAQ replies with its development information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Layanan & Pengerjaan");
-    assert.match(response.data.embeds[0].description, /1 hingga 7 hari kerja/);
+    assert.equal(response.data.embeds[0].title, "Services & Development");
+    assert.match(response.data.embeds[0].description, /1 to 7 business days/);
 });
 
 test("payments FAQ replies with its payment information", () => {
@@ -32,8 +32,8 @@ test("payments FAQ replies with its payment information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Pembayaran & Biaya");
-    assert.match(response.data.embeds[0].description, /Kapan saya harus melakukan pembayaran/);
+    assert.equal(response.data.embeds[0].title, "Payments & Costs");
+    assert.match(response.data.embeds[0].description, /When do I need to pay/);
 });
 
 test("support FAQ replies with its contact information", () => {
@@ -42,7 +42,7 @@ test("support FAQ replies with its contact information", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].title, "Kontak & Bantuan");
+    assert.equal(response.data.embeds[0].title, "Contact & Support");
     assert.match(response.data.embeds[0].description, /1251433206914486343/);
 });
 
@@ -52,5 +52,5 @@ test("unavailable FAQ categories return the fallback embed", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].description, "Pilihan ini belum tersedia.");
+    assert.equal(response.data.embeds[0].description, "This option is not available.");
 });

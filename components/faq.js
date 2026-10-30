@@ -11,20 +11,20 @@ function createEmbed(title, description) {
 
 const faqEmbeds = {
     hosting_infrastructure: createEmbed(
-        "Hosting & Infrastruktur",
-        "**Q: Apakah pembuatan bot sudah termasuk hosting?**\n**A:** Tidak. Layanan kami mencakup pengerjaan program dan setup awal. Hosting disediakan secara terpisah oleh Klien.\n\n**Q: Bagaimana cara mengurus hosting bot?**\n**A:** Kami menyediakan informasi opsi hosting di channel yang tersedia. Tim kami akan membantu proses setup ke hosting Anda secara gratis.\n\n**Q: Apakah ada hosting yang gratis?**\n**A:** Ada, namun kualitasnya sangat terbatas dan sering tidak stabil. Kami sangat menyarankan penggunaan hosting berbayar agar performa bot maksimal.\n\n**Q: Apakah hosting dibayar sekali untuk selamanya (lifetime)?**\n**A:** Tidak. Mayoritas penyedia layanan hosting menggunakan sistem langganan bulanan.\n\n**Q: Bisakah saya melakukan hosting di PC/Laptop sendiri?**\n**A:** Bisa, dengan syarat perangkat tersebut harus menyala dan terhubung ke internet 24 jam penuh setiap harinya.",
+        "Hosting & Infrastructure",
+        "**Q: Is hosting included when you build a bot?**\n**A:** No. Our service covers development and initial setup. The client provides hosting separately.\n\n**Q: How do I set up bot hosting?**\n**A:** We provide information about hosting options in the available channel. Our team can help you set up your hosting at no extra charge.\n\n**Q: Is free hosting available?**\n**A:** Yes, but its quality is very limited and it is often unstable. We strongly recommend paid hosting for the best bot performance.\n\n**Q: Is hosting a one-time, lifetime purchase?**\n**A:** No. Most hosting providers use a monthly subscription model.\n\n**Q: Can I host the bot on my own PC or laptop?**\n**A:** Yes, provided the device stays on and connected to the internet 24 hours a day.",
     ),
     services_development: createEmbed(
-        "Layanan & Pengerjaan",
-        "**Q: Berapa lama waktu pengerjaan bot?**\n**A:** Umumnya antara 1 hingga 7 hari kerja. Waktu pastinya bergantung pada antrean dan tingkat kesulitan fitur yang dipesan.\n\n**Q: Apakah ada garansi atau revisi?**\n**A:** Ya. Revisi minor gratis selama masa pembuatan. Kami juga memberi garansi perbaikan bug gratis selama 7 hari setelah bot diserahkan. Perubahan atau penambahan fitur baru setelah bot selesai akan dikenakan biaya tambahan.\n\n**Q: Bagaimana jika bot mengalami error?**\n**A:** Perbaikan gratis jika error murni dari kode kami dan masih dalam masa garansi. Jika error disebabkan oleh Klien (memodifikasi kode sendiri) atau masalah pada layanan hosting, maka akan dikenakan biaya.\n\n**Q: Apakah harga bot bisa berubah dari Price List?**\n**A:** Price List adalah patokan harga dasar. Harga final ditentukan dari kompleksitas pesanan saat sesi konsultasi. Setelah disepakati, harga tidak akan berubah.",
+        "Services & Development",
+        "**Q: How long does bot development take?**\n**A:** Usually 1 to 7 business days. The exact timeline depends on the queue and the complexity of the requested features.\n\n**Q: Do you offer a warranty or revisions?**\n**A:** Yes. Minor revisions are free during development. We also provide a free 7-day bug-fix warranty after delivery. Changes or new features requested after completion incur an additional charge.\n\n**Q: What if the bot encounters an error?**\n**A:** Repairs are free if the error is caused solely by our code and is reported during the warranty period. Errors caused by the client (such as modifying the code) or by the hosting service incur a fee.\n\n**Q: Can the bot price differ from the price list?**\n**A:** The price list provides a baseline. The final price is determined by the order's complexity during the consultation. Once agreed upon, the price will not change.",
     ),
     payments_costs: createEmbed(
-        "Pembayaran & Biaya",
-        "**Q: Metode pembayaran apa saja yang diterima?**\n**A:** Kami menerima pembayaran via Transfer Bank dan E-Wallet. Daftar lengkapnya dapat dilihat di channel Pembayaran pada server Discord kami.\n\n**Q: Kapan saya harus melakukan pembayaran?**\n**A:** Pembayaran dilakukan setelah kedua belah pihak menyepakati bahwa bot telah selesai dikerjakan dan diuji coba, kecuali jika proyek tersebut memerlukan sistem Down Payment (DP) di awal.",
+        "Payments & Costs",
+        "**Q: Which payment methods do you accept?**\n**A:** We accept bank transfers and e-wallet payments. See the Payment channel on our Discord server for the full list.\n\n**Q: When do I need to pay?**\n**A:** Payment is due after both parties agree that the bot is complete and has been tested, unless the project requires an upfront down payment (DP).",
     ),
     support_contact: createEmbed(
-        "Kontak & Bantuan",
-        "Jika Anda memiliki pertanyaan yang belum terjawab di sini, silakan hubungi tim kami:\n\n**Discord:** Channel <#1251433206914486343>\n**Waktu Respons:** Maksimal 1x24 jam",
+        "Contact & Support",
+        "If you have a question that is not answered here, please contact our team:\n\n**Discord:** Channel <#1251433206914486343>\n**Response Time:** Within 24 hours",
     ),
 };
 
@@ -37,7 +37,7 @@ function handleFaqSelect(interaction) {
     return ephemeralEmbed([
         {
             color: config.color.default,
-            description: "Pilihan ini belum tersedia.",
+            description: "This option is not available.",
         },
     ]);
 }

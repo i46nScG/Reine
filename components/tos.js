@@ -11,52 +11,52 @@ function createEmbed(title, description) {
 
 const tosEmbeds = {
     service_information: createEmbed(
-        "Informasi Penyedia Layanan",
-        "• **Usaha:** Harmony Hub\n• **Pengelola:** Tokioshy\n• **Kontak:** harmonyhub.id@gmail.com",
+        "Service Provider Information",
+        "• **Business Name:** Harmony Hub\n• **Managed By:** Tokioshy\n• **Official Contact:** harmonyhub.id@gmail.com\n• **Communication Channel:** Harmony Hub Discord server",
     ),
     definition_and_service: createEmbed(
-        "Layanan Kami",
-        "Kami menyediakan jasa pembuatan bot Discord kustom, integrasi API, dan konfigurasi server sesuai kesepakatan awal (SOW).",
+        "Our Services",
+        "Harmony Hub provides custom digital development services (Discord bots, API integrations, and server configuration) according to the specifications agreed upon in the Scope of Work (SOW).",
     ),
     tos_service: createEmbed(
-        "Aturan Pemesanan",
-        "• Klien wajib memberikan deskripsi fitur (brief) yang jelas sebelum pengerjaan.\n• Penambahan fitur di luar kesepakatan awal akan dikenakan biaya tambahan.\n• Klien wajib menyediakan akses/token yang dibutuhkan selama pengerjaan.\n• Kami berhak menolak proyek yang melanggar ToS Discord atau hukum yang berlaku.",
+        "Order Terms & Workflow",
+        "• **Clear Brief:** The client must provide a complete description of the technical requirements before the project begins.\n• **Scope Changes:** Features added or changed beyond the original brief (*major changes*) incur additional charges and may affect the schedule.\n• **Access Requirements:** The client is responsible for providing valid access tokens/API keys throughout development.\n• **Right to Refuse:** We reserve the right to refuse projects that violate Discord's ToS, involve scams or pornography, or violate the laws of the Republic of Indonesia.",
     ),
     haki_terms: createEmbed(
-        "Hak Cipta & Lisensi",
-        "• Klien mendapatkan hak guna penuh atas source code setelah pembayaran lunas.\n• Dilarang menjual kembali kode ke pihak lain tanpa izin.\n• Modifikasi kode oleh pihak luar akan menghanguskan garansi.",
+        "Copyright & Code License",
+        "• **Transfer of Rights:** Full usage rights and the final deliverable's source code are transferred to the client after full payment.\n• **Distribution Restrictions:** The final deliverable may not be resold or distributed in bulk without an additional license from us.\n• **Independent Modifications:** The client or a third party may modify the code, but doing so voids our support warranty.",
     ),
     payment_terms: createEmbed(
-        "Pembayaran",
-        "• Pembayaran dilakukan sesuai kesepakatan (Transfer Bank / E-Wallet).\n• Source code dan akses penuh diserahkan setelah pembayaran dilunasi.\n• Pelunasan wajib dilakukan maksimal 1x24 jam setelah bot selesai diuji coba.",
+        "Payment & Delivery",
+        "• **Payment Schedule:** Payment is made by bank transfer/e-wallet, with a 50% down payment for medium or large projects, or full payment upfront for small projects.\n• **Testing Phase:** The client may test the bot via a demo/staging environment before full delivery.\n• **Final Payment:** Source code and production access are delivered after full payment. The remaining balance is due within 24 hours after the testing phase is approved.",
     ),
     work_time: createEmbed(
-        "Pengerjaan & Revisi",
-        "• Estimasi pengerjaan dihitung setelah brief dan akses diterima lengkap.\n• Klien mendapatkan garansi 7 kali revisi minor dalam kurun waktu 7 hari setelah penyerahan.",
+        "Development Timeline & Revisions",
+        "• **Development Timeline:** The estimate begins once the complete brief and access are received. Delayed responses from the client will extend the estimate accordingly.\n• **Minor Revision Allowance:** The client is entitled to up to 7 minor revisions (small visual or workflow adjustments) within 7 days after testing.",
     ),
     cancellation_terms: createEmbed(
-        "Pembatalan Proyek",
-        "• Pembatalan saat proyek berjalan akan dikenakan biaya proporsional sesuai progres pengerjaan.\n• Jika kendala teknis berasal dari kami, proyek batal tanpa beban biaya ke klien.",
+        "Project Cancellation & Compensation",
+        "• **Client Cancellation:** If the project is canceled during development, the client must pay compensation proportional to the completed work.\n• **Our Technical Limitations:** If the project is canceled due to our technical limitations, no fees will be charged to the client.\n• **Liability Cap:** Total compensation claims are capped at the amount paid for the project.",
     ),
     support_maintenance: createEmbed(
-        "Garansi & Support",
-        "• Garansi perbaikan bug gratis selama 7 hari setelah bot diserahkan.\n• Garansi tidak berlaku jika bug disebabkan oleh perubahan API Discord atau modifikasi mandiri.",
+        "Warranty & After-Sales Support",
+        "• **Warranty Period:** Free bug fixes are covered for 7 calendar days after full delivery (for logic errors caused by us only).\n• **Warranty Exclusions:** The warranty does not cover errors caused by third-party API changes (Discord/external APIs), the client's hosting issues, or independent code modifications.",
     ),
     dispute_resolution: createEmbed(
-        "Penyelesaian Masalah",
-        "Jika ada kendala, hubungi kami via Discord <#1251433206914486343> atau email. Semua masalah dituntaskan secara musyawarah.",
+        "Dispute Resolution",
+        "All complaints must be submitted through the Discord channel <#1251433206914486343>. Both parties agree to seek an amicable resolution through discussion before pursuing other avenues.",
     ),
     tos_changes: createEmbed(
-        "Perubahan S&K",
-        "Syarat dan Ketentuan dapat berubah sewaktu-waktu dan berlaku sejak dipublikasikan di server Discord.",
+        "Changes to the Terms",
+        "These terms and conditions may be updated at any time. Ongoing projects remain subject to the terms agreed upon when the offer was made.",
     ),
     official_contact: createEmbed(
-        "Kontak Kami",
-        "• **Discord:** <#1251433206914486343>\n• **Email:** harmonyhub.id@gmail.com",
+        "Official Contact",
+        "• **Discord:** <#1251433206914486343>\n• **Email:** harmonyhub.id@gmail.com\n• **Response Time:** Within 24 calendar hours.",
     ),
     closing: createEmbed(
-        "Penutup",
-        "Dengan memesan jasa di Harmony Hub, Anda dianggap telah menyetujui seluruh ketentuan di atas.",
+        "Closing",
+        "By placing an order or making a payment to Harmony Hub, you acknowledge that you have read, understood, and agreed to all of the terms above.",
     ),
 };
 
@@ -69,7 +69,7 @@ function handleToSSelect(interaction) {
     return ephemeralEmbed([
         {
             color: config.color.default,
-            description: "Pilihan ini belum tersedia.",
+            description: "This option is not available.",
         },
     ]);
 }

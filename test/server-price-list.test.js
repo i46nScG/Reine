@@ -4,10 +4,10 @@ import { componentHandlers, findInteractionHandler } from "../handler/commands.j
 import { MessageFlags } from "../utils/constants.js";
 
 const packageChoices = [
-    ["basic_package", "Paket Dasar"],
-    ["regular_package", "Paket Reguler"],
-    ["lite_package", "Paket Lite"],
-    ["enterprise_package", "Paket Enterprise"],
+    ["basic_package", "Basic Package"],
+    ["regular_package", "Standard Package"],
+    ["lite_package", "Lite Package"],
+    ["enterprise_package", "Enterprise Package"],
 ];
 
 test("each server package selection returns only its matching ephemeral embed", () => {
@@ -37,9 +37,9 @@ test("extra notes selection returns the notes and support contact", () => {
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
     assert.equal(response.data.embeds.length, 1);
-    assert.equal(response.data.embeds[0].title, "Catatan Tambahan & Kontak");
+    assert.equal(response.data.embeds[0].title, "Additional Notes & Contact");
     assert.doesNotMatch(description, /###|📦/);
-    assert.match(description, /\*\*Kontak & Dukungan:\*\*/);
+    assert.match(description, /\*\*Contact & Support:\*\*/);
     assert.match(description, /1251433206914486343/);
 });
 
@@ -49,5 +49,5 @@ test("unknown server package selection returns the unavailable message", () => {
     });
 
     assert.equal(response.data.flags, MessageFlags.EPHEMERAL);
-    assert.equal(response.data.embeds[0].description, "Pilihan ini belum tersedia.");
+    assert.equal(response.data.embeds[0].description, "This option is not available.");
 });
